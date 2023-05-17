@@ -21,8 +21,6 @@ $password = $_POST["password"];
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
-// Hash the password
-/* $password = hash("md5", $password); */
 
 // Check if the username and password match
 $sql = "SELECT * FROM users WHERE user_name='$username' AND password='$password'";
