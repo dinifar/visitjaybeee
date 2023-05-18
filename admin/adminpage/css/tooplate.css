@@ -45,25 +45,27 @@ a {
 }
 a:hover,
 a:focus {
-  text-decoration: none;
+  text-decoration: font-size 4rem;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
+  
 }
 
 .tm-site-icon {
-  color: #656565;
+  color: #5069e8;
 }
 
 .tm-site-title {
   display: inline-block;
   text-transform: uppercase;
   font-size: 2rem;
-  margin-left: 1rem;
+  margin-left: 3rem;
   color: #656565;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  
 }
 
 .navbar {
@@ -71,6 +73,7 @@ a:focus {
   padding-left: 20px;
   padding-right: 20px;
   margin-top: 50px;
+  
 }
 
 .tm-logout-icon {
@@ -83,6 +86,7 @@ a:focus {
 
 .tm-mt-big {
   margin-top: 70px;
+  
 }
 
 .tm-mt-small {
@@ -91,21 +95,22 @@ a:focus {
 
 .tm-block {
   padding: 50px 45px;
+  color: #fefffa;
 }
 
 .tm-block-title {
-  font-size: 1.4rem;
-  color: #333;
+  font-size: 2.4rem;
+  color: #fefffa;
   margin-bottom: 30px;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: #656565;
+  color: #000000;
 }
 
 .navbar-light .navbar-nav .nav-link,
 .dropdown-item {
-  padding: 15px 20px;
+  padding: 10px 15px;
 }
 
 .navbar-light .navbar-nav .active > .nav-link,
@@ -175,7 +180,7 @@ ol {
 }
 
 .tm-list-group > li:hover {
-  color: #0266c4;
+  color: #adc2d6;
 }
 
 .tm-list-group-alternate-color > li:nth-child(odd) {
@@ -219,8 +224,8 @@ label {
 }
 
 .btn-primary {
-  background-color: transparent;
-  color: black;
+  background-color: #566cb5;
+  color: rgb(255, 255, 255);
   border-color: #999999;
 }
 
@@ -229,14 +234,14 @@ label {
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
-  color: black;
-  background-color: #cdd4da;
-  border-color: #999999;
+  color: rgb(255, 255, 255);
+  background-color: #798c9c;
+  border-color: #000000;
 }
 
 .btn-danger {
   color: #9f1321;
-  background-color: transparent;
+  background-color: #999999;
   border-color: #9f1321;
 }
 
@@ -264,8 +269,8 @@ label {
 }
 
 .table-hover tbody tr:hover {
-  background-color: white;
-  color: #3aabd0;
+  background-color: rgb(159, 159, 159);
+  color: #ffffff;
 }
 
 .tm-bg-gray {
@@ -277,11 +282,11 @@ label {
 }
 
 .tm-table-striped-even.table-striped tbody tr:nth-of-type(odd) {
-  background-color: white;
+  background-color: rgb(186, 186, 186);
 }
 
 .tm-table-mt {
-  margin-top: 66px;
+  margin-top: 50px;
 }
 
 .page-item:first-child .page-link {
@@ -358,7 +363,7 @@ input[type="checkbox"]:focus {
 }
 
 .tm-trash-icon {
-  color: #6e6c6c;
+  color: #f90404;
   cursor: pointer;
 }
 
@@ -371,7 +376,7 @@ input[type="checkbox"]:focus {
 }
 
 footer {
-  margin-bottom: 35px;
+  margin-bottom: 55px;
 }
 
 .custom-select {
@@ -398,12 +403,14 @@ footer {
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 15px 20px;
+    color: #5069e8;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
     max-width: 1300px;
+    
   }
 }
 
@@ -435,11 +442,11 @@ footer {
   }
 
   .navbar-collapse {
-    background: white;
+    background: rgb(131, 128, 128);
     padding: 15px;
     box-shadow: rgba(108, 117, 125, 0.27) 0px 1px 1px 0px;
     position: absolute;
-    top: 77px;
+    top: 57px;
     right: 20px;
     width: 245px;
     z-index: 1000;
@@ -472,7 +479,7 @@ footer {
 
   .tm-table-actions-col-right {
     text-align: left;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   .tm-edit-product-row {
@@ -520,7 +527,7 @@ footer {
   }
 
   .tm-site-title {
-    font-size: 1.4rem;
+    font-size: 2.4rem;
     margin-left: 7px;
   }
 
@@ -538,5 +545,6 @@ footer {
 @media (max-width: 424px) {
   .navbar-collapse {
     top: 107px;
+    
   }
 }

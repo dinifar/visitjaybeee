@@ -130,8 +130,8 @@
                                 <nav aria-label="Page navigation" class="d-inline-block">
                                     <ul class="pagination tm-pagination">
                                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item  active"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item  active"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item">
                                             <span class="tm-dots d-block">...</span>
                                         </li>
@@ -167,36 +167,37 @@
             </div>
 
 
+         
             <?php
-            // Connect to your database
-            $sname= "localhost";
-            $unmae= "root";
-            $password = "";
-          
-            $db_name = "adminjb";
-          
-          $conn = mysqli_connect($name, $user_name, $password, $phone_Num, $profileImg, $db_name);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-          
-            // Fetch places data from the database
-            $sql = "SELECT * FROM name";
-            $result = $conn->query($sql);
-          
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $name = $row['name'];
-                    $user_name = $row['user_name'];
-                    $password = $row ['password'];
-                    $phone_Num = $row ['phone_num'];
-                    $profileImg = $row ['profile_img'];
-          
-                }
-            }
-          
-            $conn->close();
-          ?>
+$sname = "localhost";
+$username = "root";
+$password = "";
+$db_name = "adminjb";
+
+// Create a connection
+$conn = mysqli_connect($sname, $user_name, $password, $db_name);
+
+// Check the connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Fetch names from the database
+$sql = "SELECT name FROM name";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "List of names:<br>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo $row['name'] . "<br>";
+    }
+} else {
+    echo "No names found in the database.";
+}
+
+mysqli_close($conn);
+?>
+
 
 
             <footer class="row tm-mt-small">
