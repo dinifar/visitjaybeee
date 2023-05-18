@@ -123,15 +123,59 @@
             <div class="tm-col tm-col-small">
                 <div class="bg-white tm-block">
                     <h2 class="tm-block-title">Profile Image</h2>
-                    <img src="img/profile-image.png" alt="Profile Image" class="img-fluid">
+                    <img src="img/profile-image.png" alt="Profile Image" class="img-fluid" style="display: block; margin: 0 auto;">
                     <div class="custom-file mt-3 mb-3">
                         <input id="fileInput" type="file" style="display:none;" />
-                        <input type="button" class="btn btn-primary d-block mx-xl-auto" value="Upload New..." onclick="document.getElementById('fileInput').click();"
-                        />
+                        <input type="button" class="btn btn-primary d-block mx-xl-auto" value="Upload New..." onclick="document.getElementById('fileInput').click();" />
                     </div>
                 </div>
             </div>
-        </div>
+            
+
+
+
+<?php
+  // Connect to your database
+  $sname= "localhost";
+  $unmae= "root";
+  $password = "";
+
+  $db_name = "visitjaybee";
+
+$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Fetch places data from the database
+  $sql = "SELECT * FROM places";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          $imageUrl = $row['image'];
+          $name = $row['name'];
+          $category = $row['category'];
+          $link = $row['link'];
+
+         echo '
+          <div class="place">
+            <a href="' . $link . '">
+              <img class="place-image" src="../../images/'.$imageUrl.'" alt="' . $name . '"> </a>
+              <div style="font-size: 150%;">' . $name . '</div>
+              <div>' . $category . '</div>
+           
+          </div>';
+
+
+      }
+  }
+
+  $conn->close();
+?>
+
+
+
         <footer class="row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="d-inline-block tm-bg-black text-white py-2 px-4">

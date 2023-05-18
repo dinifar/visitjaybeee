@@ -107,60 +107,7 @@
                                         <td>2018-10-28</td>
                                         <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox">
-                                        </th>
-                                        <td class="tm-product-name">2. Aenean eget urna enim. Sed enim</td>
-                                      
-                                        <td>2018-10-24</td>
-                                        <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox">
-                                        </th>
-                                        <td class="tm-product-name">3. Vivamus convallis tincidunt nisi</td>
-                                       
-                                        <td>2019-02-14</td>
-                                        <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox">
-                                        </th>
-                                        <td class="tm-product-name">4. Donec semper massa eget</td>
-                                       
-                                        <td>2019-03-22</td>
-                                        <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox">
-                                        </th>
-                                        <td class="tm-product-name">5. Donec semper massa eget</td>
-                                       
-                                        <td>2019-03-22</td>
-                                        <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox">
-                                        </th>
-                                        <td class="tm-product-name">6. Donec semper massa eget</td>
-                                     
-                                        <td>2019-03-22</td>
-                                        <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox">
-                                        </th>
-                                        <td class="tm-product-name">7. Donec semper massa eget</td>
-                                      
-                                        <td>2019-03-22</td>
-                                        <td><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                    </tr>
+                                  
                                     <tr>
                                         <th scope="row">
                                             <input type="checkbox" aria-label="Checkbox">
@@ -210,34 +157,7 @@
                                     <td>2. Pellentesque molestie</td>
                                     <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
                                 </tr>
-                                <tr>
-                                    <td>3. Sed feugiat nulla</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>4. Vestibulum varius arcu</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>5. Aenean eget urna enim</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>6. Condimentum viverra</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>7. In malesuada</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>8. Placerat</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>9. Donec semper</td>
-                                    <td class="tm-trash-icon-cell"><i class="fas fa-trash-alt tm-trash-icon"></i></td>
-                                </tr>
+                               
                             </tbody>
                         </table>
 
@@ -270,19 +190,7 @@
                     $user_name = $row['user_name'];
                     $password = $row ['password'];
                     $phone_Num = $row ['phone_num'];
-          
-                    
-                   
-          
-                  //  echo '
-                  //   <div class="name">
-                  //     <a href="' . $link . '">
-                  //       <img class="place-image" src="../../images/'.$imageUrl.'" alt="' . $name . '"> </a>
-                  //       <div style="font-size: 150%;">' . $name . '</div>
-                  //       <div>' . $category . '</div>
-                     
-                  //   </div>';
-          
+                    $profileImg = $row ['profile_img'];
           
                 }
             }
