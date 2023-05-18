@@ -153,7 +153,7 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
          echo '
           <div class="place">
             <a href="' . $link . '">
-              <img class="place-image" src="<?php echo $imageUrl; ?>"' . $imageUrl . '" alt="' . $name . '">
+              <img class="place-image" src="../../images/'.$imageUrl.'" alt="' . $name . '">
               <div style="font-size: 150%;">' . $name . '</div>
               <div>' . $category . '</div>
             </a>
