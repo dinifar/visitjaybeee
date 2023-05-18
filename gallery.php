@@ -9,28 +9,28 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
-    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="css/animate.css">
     
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../../css/magnific-popup.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
 
 
-    <link rel="stylesheet" href="../../css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../../css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
 
-    <link rel="stylesheet" href="../../css/flaticon.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/search.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.min.css">
 
-    <link rel="icon" href="../../images/logo.png" type="image/ico">
+    <link rel="icon" href="images/logo.png" type="image/ico">
   </head>
   <body>
 
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><img src="../../images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
+	    	<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu
 	      </button>
@@ -38,7 +38,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	        	<li class="nav-item  active"><a href="galleryadmin.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item  active"><a href="gallery.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="trip.html" class="nav-link">Trip Planning</a></li>
@@ -47,7 +47,7 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('../../images/sign.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/sign.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
@@ -76,37 +76,9 @@
   </head>
 
   
-  <div class="wrapper">
+  <!-- <div class="wrapper"> -->
     <div id="search-container">
       <div style = "text-align: center;">
-
-      <form method="POST" action="data.php">
-    <h2>Add New Place</h2>
-    <label for="imageUrl">Image URL:</label>
-    <input type="file" name="imageUrl" required>
-    <!-- <img class="place-image" src="../images/" alt=""> -->
-    <br>
-    <label for="name">Name:</label>
-    <input type="text" name="name" required>
-    <br>
-    <label for="category">Category:</label>
-    <!-- <input type="text" name="category" required>
-    <th>Category</th> -->
-    <td>
-      <select name="category">
-        <option value="Entertainment">Entertainment</option>
-        <option value="Shopping Place">Shopping Place</option>
-        <option value="Hangout Place">Hangout Place</option>
-        <option value="Unique Attraction">Unique Attraction</option>
-        <option value="Popular Eatery">Popular Eatery</option>
-      </select>
-    </td>
-    <br>
-    <label for="link">Link:</label>
-    <input type="text" name="link" required>
-    <br><br>
-    <button type="submit">Add Place</button>
-  </form>
 
   <br>
 
@@ -114,16 +86,15 @@
     <button onclick="search()">Search</button>
     
   <br><br>
-    <button class="button-value" onclick="filterCategory('all')">All</button>
+  <button class="button-value" onclick="filterCategory('all')">All</button>
     <button class="button-value" onclick="filterCategory('Entertainment')">Entertainment</button>
     <button class="button-value" onclick="filterCategory('Shopping Place')">Shopping Place</button>
     <button class="button-value" onclick="filterCategory('Hangout Place')">Hangout Place</button>
     <button class="button-value" onclick="filterCategory('Unique Attraction')">Unique Attraction</button>
     <button class="button-value" onclick="filterCategory('Popular Eatery')">Popular Eatery</button>
-
-    </div>
-    </div>
-    </div>
+    
+  </div>
+  
 
     
   <div id="placeList">
@@ -152,10 +123,10 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
           $category = $row['category'];
           $link = $row['link'];
 
-         echo '
+          echo '
           <div class="place">
             <a href="' . $link . '">
-              <img class="place-image" src="../../images/'.$imageUrl.'" alt="' . $name . '"> </a>
+              <img class="place-image" src="images/'.$imageUrl.'" alt="' . $name . '"> </a>
               <div style="font-size: 150%;">' . $name . '</div>
               <div>' . $category . '</div>
           </div>';
@@ -224,7 +195,7 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 						<ul class="list-unstyled">
               <li><a href="index.html" class="py-2 d-block">Home</a></li>
               <li><a href="about.html" class="py-2 d-block">About</a></li>
-              <li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
+              <li><a href="gallery.php" class="py-2 d-block">Places</a></li>
               <li><a href="translation.html" class="py-2 d-block">Translation</a></li>
               <li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
 			        <li><a href="trip.html" class="py-2 d-block">Trip</a></li>
@@ -259,22 +230,22 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="../../js/jquery.min.js"></script>
-  <script src="../../js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="../../js/popper.min.js"></script>
-  <script src="../../js/bootstrap.min.js"></script>
-  <script src="../../js/jquery.easing.1.3.js"></script>
-  <script src="../../js/jquery.waypoints.min.js"></script>
-  <script src="../../js/jquery.stellar.min.js"></script>
-  <script src="../../js/jquery.animateNumber.min.js"></script>
-  <script src="../../js/bootstrap-datepicker.js"></script>
-  <script src="../../js/jquery.timepicker.min.js"></script>
-  <script src="../../js/owl.carousel.min.js"></script>
-  <script src="../../js/jquery.magnific-popup.min.js"></script>
-  <script src="../../js/scrollax.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="../../js/google-map.js"></script>
-  <script src="../../js/main.js"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
 
 
     

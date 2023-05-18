@@ -4,7 +4,7 @@ $sname= "localhost";
 $unmae= "root";
 $password = "";
 
-$db_name = "visitjaybee";
+$db_name = "visitjaybeee";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 if ($conn->connect_error) {
