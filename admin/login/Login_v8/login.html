@@ -24,6 +24,11 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!--===============================================================================================-->
+
 </head>
 <body>
 	
@@ -34,7 +39,7 @@
 					<span class="login100-form-title">
 						Sign In
 					</span>
-					<form method="post" action="login.php">
+					<form method="post" action="function.php">
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
 						<input class="input100" type="text" name="username" placeholder="username">
 						<span class="focus-input100"></span>
@@ -47,7 +52,7 @@
 
 
 					<div class="container-login100-form-btn p-t-13 p-b-23">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id="loginButton">
 							Sign in
 						</button>
 					</div>
@@ -74,6 +79,8 @@
 	
 	
 <!--===============================================================================================-->
+	<script src="vendor/jquery/jquery
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
@@ -89,6 +96,45 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+	<script>
+		// Add an event listener to the login button
+		document.getElementById('loginButton').addEventListener('click', function(event) {
+			event.preventDefault(); // Prevent the form submission
+			
+			// Get the form data
+			var username = document.getElementsByName('username')[0].value;
+			var password = document.getElementsByName('password')[0].value;
+			
+			// Perform AJAX login request
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'function.php', true);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				if (xhr.status === 200) {
+					var response = JSON.parse(xhr.responseText);
+					if (response.success) {
+						// Login successful, redirect to home page
+						swal({
+                        title: 'Success',
+                        text: '',
+                        icon: 'success',
+                        closeOnClickOutside: false,
+                    }).then(function() {
+                        window.location.href = 'http://localhost/visitjaybeee/admin/indexadmin.html';
+                    });
+                } else {
+						// Login failed, display error message
+						swal('Invalid username or password.', '', 'error');
+					}
+				} else {
+					// Error occurred, display error message
+					swal('An error occurred. Please try again later.', '', 'error');
+				}
+			};
+			xhr.send('username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password));
+		});
+	</script>
 
 </body>
 </html>
