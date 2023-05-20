@@ -1,3 +1,9 @@
+<?php
+include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
+if (isset($_GET['addcategory'])) {
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Admin</title>
+    <title>Add Task</title>
     <!--
 
     Template 2108 Dashboard
@@ -22,6 +28,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
+    <script src="script.js"></script>
 </head>
 
 <body class="bg02">
@@ -29,7 +36,7 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-xl navbar-light bg-light">
-                    <a class="navbar-brand" href="Admin.html">
+                    <a class="navbar-brand" href="Admin.php">
                         <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
                         <h1 class="tm-site-title mb-0">Dashboard</h1>
                     </a>
@@ -41,18 +48,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="indexadmin.html">HOME</a>
+                                <a class="nav-link" href="indexadmin.php">HOME</a>
                             </li>
                            
                             <li class="nav-item">
-                                <a class="nav-link" href="Admin.html">ADMIN</a>
+                                <a class="nav-link" href="admin.php">ADMIN</a>
                             </li>
 
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="accounts.html">Accounts</a>
-                            </li> -->
+                           
                             <div class="nav-item">
-                                <a class="nav-link" href="profile.html">PROFILE</a>
+                                <a class="nav-link" href="profile.php">PROFILE</a>
                                 
                             </div>
                         </ul>
@@ -81,33 +86,29 @@
                     </div>
                     <div class="row mt-4 tm-edit-admin-row justify-content-center">
                         <div class="col-xl-7 col-lg-7 col-md-12">
-                            <form action="" class="tm-edit-admin-form">
+                            <form action="function.php" class="tm-add-admin-form" method="POST">
                                 <div class="input-group mb-3">
                                     <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label text-center">Admin
                                         Name
                                     </label>
-                                    <input id="name" name="name" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7">
+                                    <input id="adname" name="adname" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <label for="description" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">Description</label>
-                                    <textarea class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" rows="3" required></textarea>
+                                    <label for="explaination" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 mb-2">Description</label>
+                                    <textarea name="explaination" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" rows="3" required></textarea>
                                 </div>
                                 <div class="input-group mb-3">
                                     <label for="category" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Category</label>
-                                    <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="category">
-                                        <option selected>Select one</option>
-                                        <option value="1">Places</option>
-                                        <option value="2">Transport And Routes</option>
-                                        <option value="3">Trip Planning</option>
-                                        <option value="3">Translation</option>
-                                    </select>
+                                    <input id="task" name="task" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7">
                                 </div>
                               
                                
                                 <div class="input-group mb-3">
                                     <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
-                                        <button type="submit" class="btn btn-primary">Add
-                                        </button>
+                                        <button type="submit" value="Submit" id="submit" name ="addcategory" class="btn btn-primary">Add
+                              
+                                    </button>
+
                                     </div>
                                 </div>
                             </form>

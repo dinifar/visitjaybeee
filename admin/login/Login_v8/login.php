@@ -86,6 +86,7 @@
 
 	<script>
 		// Add an event listener to the login button
+        echo "<script type='text/javascript">;   
 		document.getElementById('loginButton').addEventListener('click', function(event) {
 			event.preventDefault(); // Prevent the form submission
 			
@@ -108,7 +109,7 @@
                         icon: 'success',
                         closeOnClickOutside: false,
                     }).then(function() {
-                        window.location.href = 'http://localhost/visitjaybeee/admin/adminpage/admin.php';
+                        window.location.href = '../admin/adminpage/admin.php';
                     });
                 } else {
 						// Login failed, display error message

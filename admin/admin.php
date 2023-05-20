@@ -190,6 +190,44 @@
                     </div>
                 </div>
 
+
+                <?php
+                $sname = "localhost";
+                $username = "root";
+                $password = "";
+                $db_name = "adminjb";
+                
+                // Create a connection
+                $conn = mysqli_connect($sname, $username, $password, $db_name);
+                
+                // Check the connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                
+                // Fetch names from the database
+                $sql = "SELECT name FROM name";
+                $result = mysqli_query($conn, $sql);
+                
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td></td>";
+                        echo "<td class='tm-product-name'>" . $row['name'] . "</td>";
+                        echo "<td></td>";
+                        echo "<td><i class='fas fa-trash-alt tm-trash-icon'></i></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>No names found in the database.</td></tr>";
+                }
+                
+                mysqli_close($conn);
+                ?>
+                
+
+
+
                 <div class="col-xl-4 col-lg-12 tm-md-12 tm-sm-12 tm-col">
                     <div class="tm-bg-black tm-block h-100">
                         <h2 class="tm-block-title d-inline-block">Product Categories</h2>
