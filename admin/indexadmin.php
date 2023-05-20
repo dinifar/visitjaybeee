@@ -1,3 +1,17 @@
+<?php 
+  
+  session_start();
+  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+      $uid = $_SESSION['id'];
+
+  }else{
+      $uid = '';
+  }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,7 +54,13 @@
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="trip.html" class="nav-link">Planning</a></li>
 	        </ul>
-			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+
+          <?php if(!empty($uid)){?>
+            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+          <?php }else{ ?>
+      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+          <?php } ?>
+
 	      </div>
 	    </div>
 	  </nav>
