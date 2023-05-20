@@ -75,72 +75,10 @@
     </style>
   </head>
 
-  
   <div class="wrapper">
     <div id="search-container">
       <div style = "text-align: center;">
-
-
-      <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-      <form method="POST" action="data.php">
-    <h2>Add New Place</h2>
-    <label for="imageUrl">Image URL:</label>
-    <input type="file" name="imageUrl" required>
-    <!-- <img class="place-image" src="../images/" alt=""> -->
-    <br>
-    <label for="name">Name:</label>
-    <input type="text" name="name" required>
-    <br>
-    <label for="category">Category:</label>
-    <!-- <input type="text" name="category" required>
-    <th>Category</th> -->
-    <td>
-      <select name="category">
-        <option value="Entertainment">Entertainment</option>
-        <option value="Shopping Place">Shopping Place</option>
-        <option value="Hangout Place">Hangout Place</option>
-        <option value="Unique Attraction">Unique Attraction</option>
-        <option value="Popular Eatery">Popular Eatery</option>
-      </select>
-    </td>
-    <br>
-    <label for="link">Link:</label>
-    <input type="text" name="link" required>
-    <br><br>
-    <button type="submit">Add Place</button>
-  </form>
-
+      
   <br>
 
     <input type="text" id="searchInput" placeholder="Search place name here...">
@@ -153,6 +91,63 @@
     <button class="button-value" onclick="filterCategory('Hangout Place')">Hangout Place</button>
     <button class="button-value" onclick="filterCategory('Unique Attraction')">Unique Attraction</button>
     <button class="button-value" onclick="filterCategory('Popular Eatery')">Popular Eatery</button>
+
+
+    <br><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          Add New Places Data
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Places</h5>
+                
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              
+              <form method="POST" action="data.php">
+              
+              <div class="form-group">
+              <label for="imageUrl">Image URL:</label>
+              <input type="file" name="imageUrl" required> </div>
+
+              <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" name="name" required></div>
+
+              <div class="form-group">
+              <label for="category">Category:</label>
+              <!-- <input type="text" name="category" required>
+              <th>Category</th> -->
+              <td>
+                <select name="category">
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Shopping Place">Shopping Place</option>
+                  <option value="Hangout Place">Hangout Place</option>
+                  <option value="Unique Attraction">Unique Attraction</option>
+                  <option value="Popular Eatery">Popular Eatery</option>
+                </select>
+              </td></div>
+
+              <div class="form-group">
+              <label for="link">Link:</label>
+              <input type="text" name="link" required> </div>
+
+              <div class="form-group">
+
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" value="Save Changes">Add Places</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
     </div>
     </div>
@@ -349,9 +344,6 @@ $conn->close();
         </div>
 			</div>
 		</footer>
-
-    
-  
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
