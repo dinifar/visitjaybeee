@@ -80,6 +80,39 @@
     <div id="search-container">
       <div style = "text-align: center;">
 
+
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
       <form method="POST" action="data.php">
     <h2>Add New Place</h2>
     <label for="imageUrl">Image URL:</label>
@@ -128,7 +161,7 @@
     
   <div id="placeList">
 
-<?php
+  <?php
   // Connect to your database
   $sname= "localhost";
   $unmae= "root";
@@ -136,36 +169,101 @@
 
   $db_name = "visitjaybeee";
 
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  $conn = mysqli_connect($sname, $unmae, $password, $db_name);
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
 
   // Fetch places data from the database
-  $sql = "SELECT * FROM places";
+  $sql = "SELECT * FROM places ";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-          $imageUrl = $row['image'];
-          $name = $row['name'];
-          $category = $row['category'];
-          $link = $row['link'];
+    while ($row = $result->fetch_assoc()) {
+        $placeId = $row['id'];
+        $imageUrl = $row['image'];
+        $name = $row['name'];
+        $category = $row['category'];
+        $link = $row['link'];
+        
 
-         echo '
-          <div class="place">
-            <a href="' . $link . '">
-              <img class="place-image" src="../images/'.$imageUrl.'" alt="' . $name . '"> </a>
-              <div style="font-size: 150%;">' . $name . '</div>
-              <div>' . $category . '</div>
-          </div>';
+        echo '
+        <div class="place">
+          <a href="' . $link . '">
+            <img class="place-image" src="../images/'.$imageUrl.'" alt="' . $name . '"> </a>
+            <div style="font-size: 150%;">' . $name . '
+            <input type="hidden" name="idtodelete" 
+            value="' . $placeId. '" ></div>
+            <div>' . $category . '</div>
+            
+            
+            <form action="updatePlacesForm.php" method="POST">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter' . $placeId . '">
+            <i class="fa fa-edit"></i>  </button>
+            <input type="hidden" name="idToDelete" 
+            value="' . $placeId. '" >
+            <button type="submit" class="btn btn-danger" name="deletePlaces" id="deletePlaces" value="Delete"><i class="fa fa-trash-o"></i></button>
+            </form>
+           
+        </div>';
 
+      // Update form using modal
+      
+       echo' <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter' . $placeId . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Places Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              <form method="POST" action="updatePlacesForm.php">
+              <input type="hidden" name="id" value="' . $placeId . '">
 
-      }
-  }
+              <div class="form-group">
+              <label for="imageUrl">Image URL:</label>
+              <input type="file" name="imageUrl" required value="'.$imageUrl.'">
+              </div>
 
-  $conn->close();
+              <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" name="name" value="' . $name . '"><br>
+              </div>
+
+              <div class="form-group">
+              <label for="category">Category:</label>
+              <select name="category" value="'.$category.'">
+                <option value="Entertainment">Entertainment</option>
+                <option value="Shopping Place">Shopping Place</option>
+                <option value="Hangout Place">Hangout Place</option>
+                <option value="Unique Attraction">Unique Attraction</option>
+                <option value="Popular Eatery">Popular Eatery</option>
+               </select>
+              </div>
+
+              <div class="form-group">
+              <label for="link">Link:</label>
+              <input type="text" name="link" value="' . $link . '"><br>
+              </div>
+              
+              </div>
+              <div class="modal-footer" align="center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="Save Changes"></button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>';
+    }
+}
+
+$conn->close();
 ?>
+
 
 </div>
 
@@ -277,6 +375,6 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
   <script src="../js/main.js"></script>
 
 
-    
+
   </body>
 </html>
