@@ -31,7 +31,7 @@ if (isset($_GET['addadmin'])) {
     <link rel="stylesheet" href="css/tooplate.css">
 </head>
 
-<body class="bg02">
+<body class="bg03">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -78,7 +78,7 @@ if (isset($_GET['addadmin'])) {
                 <div class="tm-bg-black tm-block h-100">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="tm-block-title">Profile Account</h2>
+                            <h2 class="tm-block-title">Add Account</h2>
                         </div>
                     </div>
                     <div class="row">

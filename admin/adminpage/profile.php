@@ -2,42 +2,42 @@
 <?php
 include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
 
-session_start();
+// session_start();
 
-// Check if the 'users' index is set in the $_SESSION array
-if (isset($_SESSION['users'])) {
-    $id = $_SESSION['users'];
+// // Check if the 'users' index is set in the $_SESSION array
+// if (isset($_SESSION['users'])) {
+//     $id = $_SESSION['users'];
     
-    if ($GLOBALS['con']) {
-        // Use prepared statements to prevent SQL injection
-        $stmt = $GLOBALS['con']->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->bind_param("s", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+//     if ($GLOBALS['con']) {
+//         // Use prepared statements to prevent SQL injection
+//         $stmt = $GLOBALS['con']->prepare("SELECT * FROM users WHERE id = ?");
+//         $stmt->bind_param("s", $id);
+//         $stmt->execute();
+//         $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $userRecord = $result->fetch_assoc();
-            $id = $userRecord['id'];
-            $name = $userRecord['name'];
-            $user_name = $userRecord['user_name'];
-            $password = $userRecord['password'];
-            $phoneNum = $userRecord['phoneNum'];
-        } else {
-            echo "No user found.";
-        }
+//         if ($result->num_rows > 0) {
+//             $userRecord = $result->fetch_assoc();
+//             $id = $userRecord['id'];
+//             $name = $userRecord['name'];
+//             $user_name = $userRecord['user_name'];
+//             $password = $userRecord['password'];
+//             $phoneNum = $userRecord['phoneNum'];
+//         } else {
+//             echo "No user found.";
+//         }
         
-        $stmt->close();
-    } else {
-        echo mysqli_error($GLOBALS['con']);
-    }
-} else {
-    echo "User session not set.";
-    // Redirect the user to the login page or handle the missing session appropriately
-}
+//         $stmt->close();
+//     } else {
+//         echo mysqli_error($GLOBALS['con']);
+//     }
+// } else {
+//     echo "User session not set.";
+//     // Redirect the user to the login page or handle the missing session appropriately
+// }
 
-if (isset($_GET['update'])) {
-    $updateCheck = $_GET['update'];
-}
+// if (isset($_GET['update'])) {
+//     $updateCheck = $_GET['update'];
+// }
 ?>
 
 
@@ -65,7 +65,7 @@ if (isset($_GET['update'])) {
     <link rel="stylesheet" href="css/tooplate.css">
 </head>
 
-<body class="bg01">
+<body class="bg04">
     <div class="container">
         <div class="row">
             <div class="col-12">

@@ -31,7 +31,7 @@ if (isset($_GET['addcategory'])) {
     <script src="script.js"></script>
 </head>
 
-<body class="bg02">
+<body class="bg03">
     <div class="container">
         <div class="row">
             <div class="col-12">

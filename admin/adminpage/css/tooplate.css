@@ -37,7 +37,10 @@ body {
 }
 
 .bg03 {
-	background-image: url(../img/pxfuel.jpg);
+	background-image: url(../img/view.jpg);
+}
+.bg04 {
+	background-image: url(../img/galaxy.jpg);
 }
 
 a {
