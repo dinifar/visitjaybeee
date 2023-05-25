@@ -37,13 +37,20 @@
 	      </button> --> 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
-	        	<li class="nav-item active"><a href="translation.html" class="nav-link">Translation Services</a></li>
+	        	<li class="nav-item active"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="trip.html" class="nav-link">Trip Planning</a></li>
+	          <li class="nav-item"><a href="trip.html" class="nav-link">Planning</a></li>
 	        </ul>
+
+          <?php if(!empty($uid)){?>
+            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+          <?php }else{ ?>
+      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+          <?php } ?>
+
 	      </div>
 	    </div>
 	  </nav>

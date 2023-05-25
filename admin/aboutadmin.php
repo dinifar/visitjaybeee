@@ -1,3 +1,16 @@
+<?php 
+  
+  session_start();
+  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+      $uid = $_SESSION['id'];
+
+  }else{
+      $uid = '';
+  }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,19 +40,24 @@
   <body>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
+	    	<a class="navbar-brand" href="indexadmin.php"><img src="images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item active"><a href="about.html" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
+	        	<li class="nav-item active"><a href="aboutadmin.php" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="gallery.html" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="trip.html" class="nav-link">Trip Planning</a></li>
 	        </ul>
+            <?php if(!empty($uid)){?>
+            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+          <?php }else{ ?>
+      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+          <?php } ?>
 	      </div>
 	    </div>
 	  </nav>
