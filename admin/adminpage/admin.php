@@ -62,7 +62,7 @@ if (isset($_GET['delCategory']))
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mx-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Homepage/indexadmin.php">HOME</a>
+                                    <a class="nav-link" href="../indexadmin.php">HOME</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="admin.php">ADMIN</a>
@@ -173,7 +173,7 @@ if (isset($_GET['delCategory']))
 
                 <div class="col-xl-4 col-lg-12 tm-md-12 tm-sm-12 tm-col">
                     <div class="tm-bg-black tm-block h-100">
-                        <h2 class="tm-block-title d-inline-block">Product Categories</h2>
+                        <h2 class="tm-block-title d-inline-block">Task Admin</h2>
                         <table class="table table-hover table-striped mt-3">
                             <tbody>
                            
@@ -198,7 +198,7 @@ if (isset($_GET['delCategory']))
     }
     ?>
 
-                        <a href="../adminpage/addcategory.php" class="btn btn-primary tm-table-mt">Add New Category</a>
+                        <!-- <a href="../adminpage/addcategory.php" class="btn btn-primary tm-table-mt">Add New Category</a> -->
                     </div>
                 </div>
             </div>

@@ -153,16 +153,6 @@ include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.
             </div>
      
 
-        <div class="tm-col tm-col-small">
-            <div class="tm-bg-black tm-block h-100">
-                <h2 class="tm-block-title">Profile Image</h2>
-                <img src="img/profile-image.png" alt="Profile Image" class="img-fluid" style="display: block; margin: 0 auto;">
-                <div class="custom-file mt-3 mb-3">
-                    <input id="fileInput" type="file" style="display:none;" />
-                    <input type="button" class="btn btn-primary d-block mx-xl-auto" value="Upload New..." onclick="document.getElementById('fileInput').click();" />
-                </div>
-            </div>
-        </div>
         
 
         <footer class="row tm-mt-small">

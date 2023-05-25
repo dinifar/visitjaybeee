@@ -72,17 +72,17 @@ if (isset($_GET['addadmin'])) {
             </div>
         </div>
         <!-- row -->
-        <div class="row tm-content-row tm-mt-big">
+        <div class="row tm-content-row tm-mt-big ">
            
-            <div class="tm-col tm-col-big">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 mx-auto">
                 <div class="tm-bg-black tm-block h-100">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="tm-block-title">Add Account</h2>
+                            <h2 class="tm-block-title d-inline-block text-center">Add Account</h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
+                    <div class="row mt-4 tm-edit-admin-row justify-content-center" >
+                        <div class="col-xl-7 col-lg-7 col-md-12">
                             <form action="function.php" class="tm-add-form" method="POST">
                                 <div class="form-group">
                                     <label for="name">Account Name</label>
@@ -115,25 +115,16 @@ if (isset($_GET['addadmin'])) {
                     </div>
                 </div>
             </div>
-            <div class="tm-col tm-col-small">
-                <div class="tm-bg-black tm-block h-100">
-                    <h2 class="tm-block-title">Profile Image</h2>
-                    <img src="img/profile-image.png" alt="Profile Image"  style="display: block; margin: 0 auto;">
-                    <div class="custom-file mt-3 mb-3">
-                        <input id="fileInput" name="profileImg"type="file" style="display:none;" />
-                        <input type="button" class="btn btn-primary d-block mx-xl-auto" value="Upload New..." onclick="document.getElementById('fileInput').click();" />
-                    </div>
-                </div>
-            </div>
+           
             
-        <footer class="row tm-mt-small">
+        <!-- <footer class="row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="d-inline-block tm-bg-black text-white py-2 px-4">
                     Copyright &copy; 2018. Created by
                     <a href="http://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a> |  Distributed by <a href="https://themewagon.com" class="text-white tm-footer-link">ThemeWagon</a>
                 </p>
             </div>
-        </footer>
+        </footer> -->
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
