@@ -198,7 +198,7 @@ if (isset($_GET['delCategory']))
     }
     ?>
 
-                        <!-- <a href="../adminpage/addcategory.php" class="btn btn-primary tm-table-mt">Add New Category</a> -->
+                        <a href="../adminpage/addcategory.php" class="btn btn-primary tm-table-mt">Add New Category</a>
                     </div>
                 </div>
             </div>
