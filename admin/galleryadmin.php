@@ -54,7 +54,7 @@
 	        	<li class="nav-item  active"><a href="galleryadmin.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="trip.html" class="nav-link">Trip Planning</a></li>
+	          <li class="nav-item"><a href="tripadmin.html" class="nav-link">Trip Planning</a></li>
 	        </ul>
           <?php if(!empty($uid)){?>
             <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>

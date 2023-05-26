@@ -52,7 +52,7 @@
 	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="trip.html" class="nav-link">Planning</a></li>
+	          <li class="nav-item"><a href="tripadmin.html" class="nav-link">Planning</a></li>
 	        </ul>
 
           <?php if(!empty($uid)){?>
