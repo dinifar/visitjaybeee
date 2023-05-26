@@ -48,7 +48,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
 	        	<li class="nav-item active"><a href="aboutadmin.php" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="gallery.html" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="trip.html" class="nav-link">Trip Planning</a></li>
