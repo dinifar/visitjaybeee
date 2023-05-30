@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2023 at 05:46 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: May 30, 2023 at 04:17 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `places` (
   `image` varchar(60) NOT NULL,
   `category` text NOT NULL,
   `link` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `places`
@@ -116,6 +116,29 @@ INSERT INTO `places` (`id`, `name`, `image`, `category`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trip`
+--
+
+CREATE TABLE `trip` (
+  `id` int(11) NOT NULL,
+  `image` varchar(60) NOT NULL,
+  `package` varchar(50) NOT NULL,
+  `price` int(4) NOT NULL,
+  `planning` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trip`
+--
+
+INSERT INTO `trip` (`id`, `image`, `package`, `price`, `planning`) VALUES
+(7, 'solotraveler.jpg', 'Solo Traveler', 330, 'SoloTraveler.png'),
+(9, 'family.jpg', 'Family Pax', 490, 'SoloTraveler2.png'),
+(11, 'student.jpg', 'Student/Group', 470, 'Solo Traveler (3).png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -126,7 +149,7 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `phoneNum` int(11) NOT NULL,
   `profileImg` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -146,6 +169,12 @@ ALTER TABLE `places`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `trip`
+--
+ALTER TABLE `trip`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -159,7 +188,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+
+--
+-- AUTO_INCREMENT for table `trip`
+--
+ALTER TABLE `trip`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

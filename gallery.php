@@ -41,7 +41,7 @@
 	        	<li class="nav-item  active"><a href="gallery.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="trip.html" class="nav-link">Trip Planning</a></li>
+	          <li class="nav-item"><a href="trip.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -198,7 +198,7 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
               <li><a href="gallery.php" class="py-2 d-block">Places</a></li>
               <li><a href="translation.html" class="py-2 d-block">Translation</a></li>
               <li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
-			        <li><a href="trip.html" class="py-2 d-block">Trip</a></li>
+			        <li><a href="trip.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">

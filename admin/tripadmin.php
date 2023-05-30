@@ -1,3 +1,16 @@
+<?php 
+  
+  session_start();
+  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+      $uid = $_SESSION['id'];
+
+  }else{
+      $uid = '';
+  }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,12 +47,12 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="gallery.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item active"><a href="trip.html" class="nav-link">Trip Planning</a></li>
+	          <li class="nav-item active"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -64,7 +77,178 @@
             <h2>AFFORDABLE BUDGET</h2>
           </div>
         </div>
-    		<div class="row">
+
+		<div class="wrapper">
+    	<div id="search-container">
+      	<div style = "text-align: center;">
+
+    	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          Add New Trip Planning Data
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Trip Planning</h5>
+                
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              
+              <form method="POST" action="datatrip.php">
+              
+              <div class="form-group">
+              <label for="image">Image:</label>
+              <input type="file" name="image" required> </div>
+
+              <div class="form-group">
+              <label for="name">Package:</label>
+              <input type="text" name="package" required></div>
+
+              <div class="form-group">
+              <label for="name">Price:</label>
+              <input type="text" name="price" required></div>
+
+              <div class="form-group">
+              <label for="image">Planning:</label>
+              <input type="file" name="planning" required> </div>
+
+              <div class="form-group">
+
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" value="Save Changes">Add Trip Planning</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+<br>
+    
+  <div id="tripList">
+
+  <?php
+  // Connect to your database
+  $sname= "localhost";
+  $unmae= "root";
+  $password = "";
+
+  $db_name = "visitjaybeee";
+
+  $conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Fetch places data from the database
+  $sql = "SELECT * FROM trip ";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $tripId = $row['id'];
+        $image = $row['image'];
+        $package = $row['package'];
+        $price = $row['price'];
+        $planning = $row['planning'];
+        
+        echo '
+        <div class="trip">
+
+			<div class="col-md-4 ftco-animate">
+			<div class="block-7">
+			<div style = "text-align: center;">
+		
+			<img class="img" src="../images/'.$image.'" ></a>
+			<div class="text-center p-4">
+            <span class="excerpt d-block">' . $package . '</span>
+            <input type="hidden" name="idtodelete" 
+            value="' . $tripId. '" ></div>
+			<span class="price"><sup>RM</sup> <span class="number">' . $price . '</span> <sub>/per person</sub></span>
+
+				<ul class="pricing-text mb-5">
+					<li><span class="fa fa-check mr-2"></span>Food Recommended</li>
+					<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
+				
+			<a href="../images/'.$planning.'" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
+			<br>
+			<form action="updateTrip.php" method="POST">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter' . $tripId . '">
+            <i class="fa fa-edit"></i>  </button>
+            <input type="hidden" name="idToDelete" 
+            value="' . $tripId. '" >
+            <button type="submit" class="btn btn-danger" name="deleteTrip" id="deleteTrip" value="Delete"><i class="fa fa-trash-o"></i></button>
+            </form>
+
+			</div>
+			</div>
+			</div>
+			</div>
+            
+        </div>';
+
+
+      // Update form using modal
+      
+       echo' <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter' . $tripId . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Trip Planning</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              <form method="POST" action="updateTrip.php">
+              <input type="hidden" name="id" value="' . $tripId . '">
+
+              <div class="form-group">
+              <label for="image">Image:</label>
+              <input type="file" name="image" required value="'.$image.'">
+              </div>
+
+              <div class="form-group">
+              <label for="name">Package:</label>
+              <input type="text" name="package" value="' . $package . '"><br>
+              </div>
+
+              <div class="form-group">
+              <label for="name">Price:</label>
+              <input type="text" name="price" value="' . $price . '"><br>
+              </div>
+
+              <div class="form-group">
+              <label for="image">Planning:</label>
+              <input type="file" name="planning" value="' . $planning . '"><br>
+              </div>
+              
+              </div>
+              <div class="modal-footer" align="center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="Save Changes"></button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>';
+    }
+}
+
+$conn->close();
+?>
+
+
+    		<!-- <div class="row">
     			<div class="col-md-4 ftco-animate">
 	          <div class="block-7">
 	          	<div class="img" style="background-image: url(images/solo\ traveler.jpg);"></div>
@@ -97,8 +281,8 @@
 						<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
 					  </ul>
   
-		            <!-- <a href="images/Solo Traveler (2).png" class="btn btn-primary d-block px-2 py-3">Get Started</a> -->
-					<a href="images/Solo Traveler (2).png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
+		            <a href="images/Solo Traveler (2).png" class="btn btn-primary d-block px-2 py-3">Get Started</a> -->
+					<!-- <a href="images/Solo Traveler (2).png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
 					
 	            </div>
 	          </div>
@@ -120,7 +304,7 @@
 	          </div>
 	        </div>
 	      </div>
-    	</div>
+    	</div> -->
     </section>
 
     <!-- <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img" style="background-image: url(images/bg_3.jpg);">
@@ -231,12 +415,12 @@
 					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
-						<li><a href="index.html" class="py-2 d-block">Home</a></li>
-						<li><a href="about.html" class="py-2 d-block">About</a></li>
-						<li><a href="gallery.php" class="py-2 d-block">Places</a></li>
+						<li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
+						<li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
+						<li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
 						<li><a href="translation.html" class="py-2 d-block">Translation</a></li>
 						<li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
-						<li><a href="pricing.html" class="py-2 d-block">Trip</a></li>
+						<li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">

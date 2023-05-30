@@ -54,7 +54,7 @@
 	        	<li class="nav-item  active"><a href="galleryadmin.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="tripadmin.html" class="nav-link">Trip Planning</a></li>
+	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
           <?php if(!empty($uid)){?>
             <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
@@ -333,12 +333,12 @@ $conn->close();
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
-              <li><a href="index.html" class="py-2 d-block">Home</a></li>
-              <li><a href="about.html" class="py-2 d-block">About</a></li>
+              <li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
+              <li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
               <li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
               <li><a href="translation.html" class="py-2 d-block">Translation</a></li>
               <li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
-			        <li><a href="trip.html" class="py-2 d-block">Trip</a></li>
+			        <li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">

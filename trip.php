@@ -34,12 +34,12 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="gallery.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item"><a href="translation.html" class="nav-link">Translation Services</a></li>
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item active"><a href="tripadmin.html" class="nav-link">Trip Planning</a></li>
+	          <li class="nav-item active"><a href="trip.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -64,63 +64,63 @@
             <h2>AFFORDABLE BUDGET</h2>
           </div>
         </div>
-    		<div class="row">
-    			<div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/solo\ traveler.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Solo Traveler</span>
-	            	<span class="price"><sup>RM</sup> <span class="number">330</span> <sub>/per person</sub></span>
-	            
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Routes and public transport</li>
-		              <li><span class="fa fa-check mr-2"></span>Food Recommended</li>
-		              <li><span class="fa fa-check mr-2"></span>Recommended Places</li>
-		             
-		            </ul>
+		<div id="tripList">
 
-					<a href="images/Solo Traveler.png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
-						
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/family.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Family Pax</span>
-		            <span class="price"><sup>RM</sup> <span class="number">490</span> <sub>/per person</sub></span>
-		            
-					<ul class="pricing-text mb-5">
-						<li><span class="fa fa-check mr-2"></span>Routes and public transport</li>
-						<li><span class="fa fa-check mr-2"></span>Food Recommended</li>
-						<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
-					  </ul>
-  
-		            <!-- <a href="images/Solo Traveler (2).png" class="btn btn-primary d-block px-2 py-3">Get Started</a> -->
-					<a href="images/Solo Traveler (2).png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
-					
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/student.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Student/Group</span>
-		            <span class="price"><sup>RM</sup> <span class="number">470</span> <sub>/per person</sub></span>
-		            
-		            <ul class="pricing-text mb-5">
-						<li><span class="fa fa-check mr-2"></span>Routes and public transport</li>
-						<li><span class="fa fa-check mr-2"></span>Food Recommended</li>
-						<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
-					  </ul>
-					<a href="images/Solo Traveler (3).png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-    	</div>
+<?php
+  // Connect to your database
+  $sname= "localhost";
+  $unmae= "root";
+  $password = "";
+
+  $db_name = "visitjaybeee";
+
+$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Fetch places data from the database
+  $sql = "SELECT * FROM trip";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          $image = $row['image'];
+          $package = $row['package'];
+          $price = $row['price'];
+          $planning = $row['planning'];
+
+          echo '
+        <div class="trip">
+
+			<div class="col-md-4 ftco-animate">
+			<div class="block-7">
+			<div style = "text-align: center;">
+		
+			<img class="img" src="images/'.$image.'" ></a>
+			<div class="text-center p-4">
+            <span class="excerpt d-block">' . $package . '</span>
+			<span class="price"><sup>RM</sup> <span class="number">' . $price . '</span> <sub>/per person</sub></span>
+
+				<ul class="pricing-text mb-5">
+					<li><span class="fa fa-check mr-2"></span>Food Recommended</li>
+					<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
+				
+			<a href="images/'.$planning.'" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
+
+			</div>
+			</div>
+			</div>
+			</div>
+            
+        </div>';
+
+
+      }
+  }
+
+  $conn->close();
+?>
     </section>
 
     <!-- <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img" style="background-image: url(images/bg_3.jpg);">
@@ -233,7 +233,7 @@
 						<ul class="list-unstyled">
 						<li><a href="index.html" class="py-2 d-block">Home</a></li>
 						<li><a href="about.html" class="py-2 d-block">About</a></li>
-						<li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
+						<li><a href="gallery.php" class="py-2 d-block">Places</a></li>
 						<li><a href="translation.html" class="py-2 d-block">Translation</a></li>
 						<li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
 						<li><a href="pricing.html" class="py-2 d-block">Trip</a></li>
