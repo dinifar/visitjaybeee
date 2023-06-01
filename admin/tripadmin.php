@@ -161,7 +161,7 @@
         $planning = $row['planning'];
         
         echo '
-        <div class="trip">
+        <div class="trip" style="display: flex;">
 
 			<div class="col-md-4 ftco-animate">
 			<div class="block-7">
