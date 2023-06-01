@@ -1,5 +1,5 @@
 <?php
-include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
+include_once 'C:/xampp/htdocs/visitjaybeee/include/db_connect.php';
 // Retrieve data from the "users" table
 $userQuery = "SELECT * FROM users";
 $userResult = mysqli_query($GLOBALS['con'], $userQuery);
@@ -150,7 +150,7 @@ if (isset($_GET['delCategory']))
                         <div class="tm-table-mt tm-table-actions-row">
                             <div class="tm-table-actions-col-left">
                             <input type="hidden" name="delAdmin" value="<?php echo $id; ?>">
-                <td><button value="<?php echo $id; ?>" id="submit" type="submit" name="delAdmin" class="btn btn-danger">Delete Selected Items</button>
+                <!-- <td><button value="<?php echo $id; ?>" id="submit" type="submit" name="delAdmin" class="btn btn-danger">Delete Selected Items</button> -->
                                 
                             </div>
                             

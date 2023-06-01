@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2023 at 04:17 PM
+-- Generation Time: Jun 01, 2023 at 03:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `visitjaybeee`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `adname` text NOT NULL,
+  `explaination` text NOT NULL,
+  `task` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `adname`, `explaination`, `task`) VALUES
+(2, 'Nadia Ainaa', 'Translation for the page', 'Translation'),
+(3, 'Fazreen Laila', 'Places in Johor Bahru', 'Places'),
+(4, 'Dini Farizah', 'Routes and Transportation update.', 'Routes and Transportation');
 
 -- --------------------------------------------------------
 
@@ -111,30 +133,29 @@ INSERT INTO `places` (`id`, `name`, `image`, `category`, `link`) VALUES
 (114, 'Big Food F&B', 'bigfood.jpg', 'Popular Eatery', 'http://bigfoodfnb.biz/bigfood/about.php'),
 (115, 'Anjung Senibong Restoran', 'senibong.jpg', 'Popular Eatery', 'https://shorturl.at/djDE3'),
 (116, 'KopiLoco', 'kopi.JPG', 'Popular Eatery', 'https://shorturl.at/sJKPX'),
-(117, 'Menate Steak Hub', 'menate.jpeg', 'Popular Eatery', 'https://menate.com.my/our-menu/');
+(117, 'Menate Steak Hub', 'menate.jpeg', 'Popular Eatery', 'https://menate.com.my/our-menu/'),
+(122, 'Transportation Lurve', 'utm.jpg', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trip`
+-- Table structure for table `transportation`
 --
 
-CREATE TABLE `trip` (
+CREATE TABLE `transportation` (
   `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `image` varchar(60) NOT NULL,
-  `package` varchar(50) NOT NULL,
-  `price` int(4) NOT NULL,
-  `planning` varchar(255) NOT NULL
+  `caption` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `trip`
+-- Dumping data for table `transportation`
 --
 
-INSERT INTO `trip` (`id`, `image`, `package`, `price`, `planning`) VALUES
-(7, 'solotraveler.jpg', 'Solo Traveler', 330, 'SoloTraveler.png'),
-(9, 'family.jpg', 'Family Pax', 490, 'SoloTraveler2.png'),
-(11, 'student.jpg', 'Student/Group', 470, 'Solo Traveler (3).png');
+INSERT INTO `transportation` (`id`, `name`, `image`, `caption`) VALUES
+(1, 'Test', 'pricing-2.jpg', 'test test test test test'),
+(3, 'UTM BUS LAGI', 'utm.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -147,16 +168,20 @@ CREATE TABLE `users` (
   `user_name` varchar(20) NOT NULL,
   `password` varchar(8) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phoneNum` int(11) NOT NULL,
-  `profileImg` varchar(255) NOT NULL
+  `phoneNum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `phoneNum`, `profileImg`) VALUES
-(1, 'qarin', 'qarin123', 'Nur Qarin Sofiya', 1345423565, 'Y');
+INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `phoneNum`) VALUES
+(1, 'qarin', 'qarin123', 'Nur Qarin Sofiya', 1345423565),
+(4, 'lalisa@gmail.com', 'lisa01', 'Lalisa Manoban', 1234567891),
+(5, 'kimgyu@gmail.com', 'migyu12', 'Kim Mingyu', 1723459603),
+(6, 'chennie@gmail.com', 'chenchen', 'Chen', 1110107127),
+(7, 'jiminpark@gmail.com', 'jimin07', 'Park Jimin', 1110109127),
+(8, 'yeonsang@gmail.com', 'kyeongsa', 'Kang Yeonsang', 1110109876);
 
 --
 -- Indexes for dumped tables
@@ -169,9 +194,9 @@ ALTER TABLE `places`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trip`
+-- Indexes for table `transportation`
 --
-ALTER TABLE `trip`
+ALTER TABLE `transportation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -188,19 +213,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
--- AUTO_INCREMENT for table `trip`
+-- AUTO_INCREMENT for table `transportation`
 --
-ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `transportation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

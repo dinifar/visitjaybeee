@@ -1,5 +1,5 @@
 <?php
-include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
+include_once 'C:/xampp/htdocs/visitjaybeee/include/db_connect.php';
 
   session_start();
 
@@ -57,11 +57,11 @@ function addadmin()
         $user_name = mysqli_real_escape_string($GLOBALS['con'], $_POST['user_name']);
         $password = mysqli_real_escape_string($GLOBALS['con'], $_POST['password']);
         $phoneNum = mysqli_real_escape_string($GLOBALS['con'], $_POST['phoneNum']);
-        $profileImg = "default.png";
+       
         
         
 
-        $sql = "INSERT INTO users (name, user_name, password, phoneNum, profileImg) VALUES ('$name', '$user_name', '$password', '$phoneNum', '$profileImg')";
+        $sql = "INSERT INTO users (name, user_name, password, phoneNum) VALUES ('$name', '$user_name', '$password', '$phoneNum')";
     }
 
     if (!mysqli_query($GLOBALS['con'], $sql)) {

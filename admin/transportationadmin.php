@@ -1,3 +1,17 @@
+<?php 
+  
+  session_start();
+  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+      $uid = $_SESSION['id'];
+
+  }else{
+      $uid = '';
+  }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,6 +55,11 @@
 	          <li class="nav-item active"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
+            <?php if(!empty($uid)){?>
+            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+          <?php }else{ ?>
+      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+          <?php } ?>
 	      </div>
 	    </div>
 	  </nav>
@@ -57,68 +76,201 @@
       </div>
     </section>
 
+    <head>
+    <style>
+      /* Add some basic styling */
+      .place {
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+      }
+      /* .place-image {
+        max-width: 370px;
+      } */
+    </style>
+  </head>
+  
     <section class="ftco-section bg-light">
     	<div class="container">
     		<div class="row justify-content-center pb-5 mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h2>Transportation and Routes in Johor Bahru</h2>
+			<br>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          Add New Transportation
+        </button>
           </div>
         </div>
-    		<div class="row">
-    			<div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/transportation-1.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">myBus</span>
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Launched in 2010, the Bas Iskandar Malaysia scheme has restored some of the withdrawn bus routes, mainly connecting between towns outside of the city center.</li>
-		              <li><span class="fa fa-check mr-2"></span>By 2012, a total of 27 bus services ("IM" Bus Routes) were introduced under this scheme.</li>
-		              <li><span class="fa fa-check mr-2"></span>However, since 2016, Bas Iskandar Malaysia bus routes were gradually withdrawn, with some being re-introduced under the new Bas Muafakat Johor scheme.</li>
-		              <li><span class="fa fa-check mr-2"></span>The last route IM05 introduced under the Bas Iskandar Malaysia scheme has been replaced by myBAS Johor Bahru on 25 April 2022.</li>
-		            </ul>
 
-	            	<a href="mybusroutes.html" class="btn btn-primary d-block px-2 py-3">View MyBus Routes </a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/pricing-2.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Bus Muafakat Johor</span>
-		            
-		            
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Bas Muafakat Johor is an initiative by the Johor Public Transport Corporation (Perbadanan Pengangkutan Awam Johor / PAJ), in collaboration with City Councils in Johor Bahru (MBJB), Johor Bahru Tengah (MBJPT), Kulai (MPKu) and Pasir Gudang (MPPG).</li>
-		              <li><span class="fa fa-check mr-2"></span>Bas Muafakat Johor bus services are being operated by Causeway Link (7 routes) and Maju (8 routes).</li>
-		              <li><span class="fa fa-check mr-2"></span>The expansion of this initiative was rolled out in April 2017, with an additional 11 new bus routes in Johor Bahru and a total of 20 new bus routes in Johor towns such as Muar, Tangkak, Yong Peng, Segamat, Simpang Renggam, Kluang, Batu Pahat, Pontian, Mersing and Kota Tinggi.</span></li>
-		              <li><span class="fa fa-check mr-2"></span>To be entitled with free bus ride, users of the Bas Muafakat Johor must register for the Muafakat Johor Card (Kad Muafakat Johor) from the official website.  The free bus services are only available for Malaysian citizens, whom have registered and received their travel card. </li>
-		            </ul>
+		 <!-- Modal -->
+		 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Transportation</h5>
+                
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              
+              <form method="POST" action="datatransportation.php">
+              
+              <div class="form-group">
+              <label for="imageUrl">Image URL:</label>
+              <input type="file" name="imageUrl" required> </div>
 
-		            <a href="muafakatjohorbus.html" class="btn btn-primary d-block px-2 py-3">View Muafakat Johor Bus Routes</a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/pricing-3.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Iskandar Puteri Community Shuttle</span>
-		           
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Iskandar Puteri Community Shuttle bus services are provided by UEM Sunrise.</li>
-		              <li><span class="fa fa-check mr-2"></span>These bus services enhance public transport connectivity in Iskandar Puteri in addition to existing Causeway Link buses serving the area.</li>
-		              <li><span class="fa fa-check mr-2"></span>These shuttle buses are provided free of charge. Passengers are advised to present resident card, staff card, student card, ferry ticket or event flyer upon boarding.</li>
-		              <li><span class="fa fa-check mr-2"></span>Currently, three shuttle bus routes are available and four buses are plying these routes.</li>
-		            </ul>
+              <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" name="name" required></div>
 
-		            <a href="iskandarputerishuttle.html" class="btn btn-primary d-block px-2 py-3">View Iskandar Puteri Shuttle Routes</a>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-    	</div>
-    </section>
+              <div class="form-group">
+              <label for="Text">Captions:</label>
+              <input type="text" name="text" required> </div>
+              
+
+              <div class="form-group">
+
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" value="Save Changes">Add Places</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    
+  <div id="transportationList">
+
+  <?php
+  // Connect to your database
+  $sname= "localhost";
+  $unmae= "root";
+  $password = "";
+
+  $db_name = "visitjaybeee";
+
+  $conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Fetch places data from the database
+  $sql = "SELECT * FROM transportation";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $transportationId = $row['id'];
+        $imageUrl = $row['image'];
+        $name = $row['name'];
+        $caption = $row['caption'];
+
+        echo '
+        <div class="transportation">
+            <img class="place-image" src="../transportationimages/'.$imageUrl.'" alt="' . $name . '"> </a>
+            <div style="font-size: 150%;">' . $name . '
+            <input type="hidden" name="idtodelete" 
+            value="' . $transportationId. '" ></div>
+            <div>' . $caption . '</div>
+            
+            
+            <form action="updatePlacesForm.php" method="POST">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter' . $transportationId . '">
+            <i class="fa fa-edit"></i>  </button>
+            <input type="hidden" name="idToDelete" 
+            value="' . $transportationId. '" >
+            <button type="submit" class="btn btn-danger" name="deletePlaces" id="deletePlaces" value="Delete"><i class="fa fa-trash-o"></i></button>
+            </form>
+           
+        </div>';
+
+      // Update form using modal
+      
+       echo' <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter' . $transportationId . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Places Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              <form method="POST" action="updatePlacesForm.php">
+              <input type="hidden" name="id" value="' . $transportationId . '">
+
+              <div class="form-group">
+              <label for="imageUrl">Image URL:</label>
+              <input type="file" name="imageUrl" required value="'.$imageUrl.'">
+              </div>
+
+              <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" name="name" value="' . $name . '"><br>
+              </div>
+              
+              </div>
+              <div class="modal-footer" align="center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="Save Changes"></button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>';
+    }
+}
+
+$conn->close();
+?>
+
+
+</div>
+
+    <script>
+      function search() {
+        var input = document.getElementById('searchInput').value.toUpperCase();
+        var placeList = document.getElementById('placeList');
+        var places = placeList.getElementsByClassName('place');
+  
+        for (var i = 0; i < places.length; i++) {
+          var place = places[i].getElementsByTagName('div')[0];
+          var text = place.textContent || place.innerText;
+          if (text.toUpperCase().indexOf(input) > -1) {
+            places[i].style.display = 'inline-block';
+          } else {
+            places[i].style.display = 'none';
+          }
+        }
+      }
+  
+      function filterCategory(category) {
+        var placeList = document.getElementById('placeList');
+        var places = placeList.getElementsByClassName('place');
+  
+        if (category === 'all') {
+          for (var i = 0; i < places.length; i++) {
+            places[i].style.display = 'inline-block';
+          }
+        } else {
+          for (var i = 0; i < places.length; i++) {
+            var placeCategory = places[i].getElementsByTagName('div')[1].textContent.trim();
+            if (placeCategory === category) {
+              places[i].style.display = 'inline-block';
+            } else {
+              places[i].style.display = 'none';
+            }
+          }
+        }
+      }
+    </script>
 
 
     <footer class="footer">
@@ -140,7 +292,7 @@
 							<li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
 							<li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
 							<li><a href="translation.html" class="py-2 d-block">Translation</a></li>
-							<li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
+							<li><a href="transportationadmin.php" class="py-2 d-block">Transportation</a></li>
 							<li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
