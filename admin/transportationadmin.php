@@ -134,7 +134,7 @@
               </div>
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" value="Save Changes">Add Places</button>
+                <button type="submit" class="btn btn-primary" value="Save Changes">Add Transport</button>
               </div>
             </div>
           </div>
@@ -180,7 +180,7 @@
             <div>' . $caption . '</div>
             
             
-            <form action="updatePlacesForm.php" method="POST">
+            <form action="datatransportation.php" method="POST">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter' . $transportationId . '">
             <i class="fa fa-edit"></i>  </button>
             <input type="hidden" name="idToDelete" 
@@ -197,13 +197,13 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Update Places Details</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Transportation Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-              <form method="POST" action="updatePlacesForm.php">
+              <form method="POST" action="updateTransport.php">
               <input type="hidden" name="id" value="' . $transportationId . '">
 
               <div class="form-group">
@@ -215,11 +215,16 @@
               <label for="name">Name:</label>
               <input type="text" name="name" value="' . $name . '"><br>
               </div>
+
+              <div class="form-group">
+              <label for="caption">Caption:</label>
+              <input type="text" name="caption" value="' . $caption . '"><br>
+              </div>
               
               </div>
               <div class="modal-footer" align="center">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn-primary" value="Save Changes"></button>
+                <input type="submit" class="btn btn-primary" value="Save Changes" id="updateTransport"></button>
               </div>
               </form>
             </div>
@@ -233,44 +238,6 @@ $conn->close();
 
 
 </div>
-
-    <script>
-      function search() {
-        var input = document.getElementById('searchInput').value.toUpperCase();
-        var placeList = document.getElementById('placeList');
-        var places = placeList.getElementsByClassName('place');
-  
-        for (var i = 0; i < places.length; i++) {
-          var place = places[i].getElementsByTagName('div')[0];
-          var text = place.textContent || place.innerText;
-          if (text.toUpperCase().indexOf(input) > -1) {
-            places[i].style.display = 'inline-block';
-          } else {
-            places[i].style.display = 'none';
-          }
-        }
-      }
-  
-      function filterCategory(category) {
-        var placeList = document.getElementById('placeList');
-        var places = placeList.getElementsByClassName('place');
-  
-        if (category === 'all') {
-          for (var i = 0; i < places.length; i++) {
-            places[i].style.display = 'inline-block';
-          }
-        } else {
-          for (var i = 0; i < places.length; i++) {
-            var placeCategory = places[i].getElementsByTagName('div')[1].textContent.trim();
-            if (placeCategory === category) {
-              places[i].style.display = 'inline-block';
-            } else {
-              places[i].style.display = 'none';
-            }
-          }
-        }
-      }
-    </script>
 
 
     <footer class="footer">
