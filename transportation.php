@@ -45,80 +45,43 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end">
-          <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Pricing <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Transportation and Routes</h1>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="ftco-section bg-light">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h2>Transportation and Routes in Johor Bahru</h2>
-          </div>
-        </div>
-    		<div class="row">
-    			<div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/transportation-1.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">myBus</span>
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Launched in 2010, the Bas Iskandar Malaysia scheme has restored some of the withdrawn bus routes, mainly connecting between towns outside of the city center.</li>
-		              <li><span class="fa fa-check mr-2"></span>By 2012, a total of 27 bus services ("IM" Bus Routes) were introduced under this scheme.</li>
-		              <li><span class="fa fa-check mr-2"></span>However, since 2016, Bas Iskandar Malaysia bus routes were gradually withdrawn, with some being re-introduced under the new Bas Muafakat Johor scheme.</li>
-		              <li><span class="fa fa-check mr-2"></span>The last route IM05 introduced under the Bas Iskandar Malaysia scheme has been replaced by myBAS Johor Bahru on 25 April 2022.</li>
-		            </ul>
+    <?php
+  // Connect to your database
+  $sname= "localhost";
+  $unmae= "root";
+  $password = "";
 
-	            	<a href="mybusroutes.html" class="btn btn-primary d-block px-2 py-3">View MyBus Routes </a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/pricing-2.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Bus Muafakat Johor</span>
-		            
-		            
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Bas Muafakat Johor is an initiative by the Johor Public Transport Corporation (Perbadanan Pengangkutan Awam Johor / PAJ), in collaboration with City Councils in Johor Bahru (MBJB), Johor Bahru Tengah (MBJPT), Kulai (MPKu) and Pasir Gudang (MPPG).</li>
-		              <li><span class="fa fa-check mr-2"></span>Bas Muafakat Johor bus services are being operated by Causeway Link (7 routes) and Maju (8 routes).</li>
-		              <li><span class="fa fa-check mr-2"></span>The expansion of this initiative was rolled out in April 2017, with an additional 11 new bus routes in Johor Bahru and a total of 20 new bus routes in Johor towns such as Muar, Tangkak, Yong Peng, Segamat, Simpang Renggam, Kluang, Batu Pahat, Pontian, Mersing and Kota Tinggi.</span></li>
-		              <li><span class="fa fa-check mr-2"></span>To be entitled with free bus ride, users of the Bas Muafakat Johor must register for the Muafakat Johor Card (Kad Muafakat Johor) from the official website.  The free bus services are only available for Malaysian citizens, whom have registered and received their travel card. </li>
-		            </ul>
+  $db_name = "visitjaybeee";
 
-		            <a href="muafakatjohorbus.html" class="btn btn-primary d-block px-2 py-3">View Muafakat Johor Bus Routes</a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/pricing-3.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Iskandar Puteri Community Shuttle</span>
-		           
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Iskandar Puteri Community Shuttle bus services are provided by UEM Sunrise.</li>
-		              <li><span class="fa fa-check mr-2"></span>These bus services enhance public transport connectivity in Iskandar Puteri in addition to existing Causeway Link buses serving the area.</li>
-		              <li><span class="fa fa-check mr-2"></span>These shuttle buses are provided free of charge. Passengers are advised to present resident card, staff card, student card, ferry ticket or event flyer upon boarding.</li>
-		              <li><span class="fa fa-check mr-2"></span>Currently, three shuttle bus routes are available and four buses are plying these routes.</li>
-		            </ul>
+$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
 
-		            <a href="iskandarputerishuttle.html" class="btn btn-primary d-block px-2 py-3">View Iskandar Puteri Shuttle Routes</a>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-    	</div>
-    </section>
+  // Fetch places data from the database
+  $sql = "SELECT * FROM transportation";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          $imageUrl = $row['image'];
+          $name = $row['name'];
+          $caption = $row['caption'];
+
+          echo '
+          <div class="place">
+              <img class="place-image" src="transportationimages/'.$imageUrl.'" alt="' . $name . '"> </a>
+              <div style="font-size: 150%;">' . $name . '</div>
+              <div>' . $caption . '</div>
+          </div>';
+
+
+      }
+  }
+
+  $conn->close();
+?>
 
 
     <footer class="footer">
