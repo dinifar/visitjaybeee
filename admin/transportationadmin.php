@@ -79,14 +79,14 @@
     <head>
     <style>
       /* Add some basic styling */
-      .place {
+      .transportation {
         display: inline-block;
         margin: 10px;
         text-align: center;
       }
-      /* .place-image {
+       .place-image {
         max-width: 370px;
-      } */
+      } 
     </style>
   </head>
   
@@ -172,20 +172,22 @@
         $caption = $row['caption'];
 
         echo '
+        
         <div class="transportation">
-            <img class="place-image" src="../transportationimages/'.$imageUrl.'" alt="' . $name . '"> </a>
+        <div class="image-container">
+        <img class="place-image" src="../transportationimages/'.$imageUrl.'" alt="' . $name . '">
             <div style="font-size: 150%;">' . $name . '
             <input type="hidden" name="idtodelete" 
             value="' . $transportationId. '" ></div>
             <div>' . $caption . '</div>
             
             
-            <form action="datatransportation.php" method="POST">
+            <form action="updateTransport.php" method="POST">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter' . $transportationId . '">
             <i class="fa fa-edit"></i>  </button>
             <input type="hidden" name="idToDelete" 
             value="' . $transportationId. '" >
-            <button type="submit" class="btn btn-danger" name="deletePlaces" id="deletePlaces" value="Delete"><i class="fa fa-trash-o"></i></button>
+            <button type="submit" class="btn btn-danger" name="deleteTransportation" id="deleteTransportation" value="Delete"><i class="fa fa-trash-o"></i></button>
             </form>
            
         </div>';
@@ -238,6 +240,7 @@ $conn->close();
 
 
 </div>
+</section>
 
 
     <footer class="footer">

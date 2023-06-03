@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2023 at 03:07 AM
+-- Generation Time: Jun 03, 2023 at 04:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -155,7 +155,34 @@ CREATE TABLE `transportation` (
 
 INSERT INTO `transportation` (`id`, `name`, `image`, `caption`) VALUES
 (1, 'Test', 'pricing-2.jpg', 'test test test test test'),
-(3, 'UTM BUS LAGI', 'utm.jpg', '');
+(3, 'UTM BUS LAGI', 'utm.jpg', 'ini bus utm lagilah'),
+(10, 'Bukan Bus UTM', 'pricing-3.jpg', 'ini bus utmlanya'),
+(16, 'ETS', 'train.jpg', 'JB to Singapore'),
+(17, 'ETS LAGI', 'train.jpg', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trip`
+--
+
+CREATE TABLE `trip` (
+  `id` int(11) NOT NULL,
+  `image` varchar(60) NOT NULL,
+  `package` varchar(50) NOT NULL,
+  `price` int(4) NOT NULL,
+  `planning` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `trip`
+--
+
+INSERT INTO `trip` (`id`, `image`, `package`, `price`, `planning`) VALUES
+(7, 'solotraveler.jpg', 'Solo Traveler', 330, 'SoloTraveler.png'),
+(9, 'family.jpg', 'Family Pax', 490, 'SoloTraveler2.png'),
+(11, 'student.jpg', 'Student/Group', 470, 'Solo Traveler (3).png'),
+(14, '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -200,6 +227,12 @@ ALTER TABLE `transportation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `trip`
+--
+ALTER TABLE `trip`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -219,7 +252,13 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `transportation`
 --
 ALTER TABLE `transportation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `trip`
+--
+ALTER TABLE `trip`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`

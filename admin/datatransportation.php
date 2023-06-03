@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $imageUrl = $_POST['imageUrl'];
 $name = $_POST['name'];
 $caption = $_POST['caption'];
-$message = "New place added successfully";
+$message = "New transportation added successfully";
 
 // Insert new trip data into the database
 $sql = "INSERT INTO transportation (image, name, caption) VALUES ('$imageUrl', '$name', '$caption')";
