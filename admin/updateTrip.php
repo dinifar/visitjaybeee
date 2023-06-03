@@ -1,5 +1,5 @@
 <?php 
-if (isset($_POST['delTrip'])) {
+if (isset($_POST['deleteTrip'])) {
     delTrip();
 }
 
