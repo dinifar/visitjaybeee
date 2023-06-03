@@ -54,11 +54,6 @@
 	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item active"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
-          <?php if(!empty($uid)){?>
-            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
-          <?php }else{ ?>
-      			<a href="login\Login_v8\login.php" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
-          <?php } ?>
 	      </div>
 	    </div>
 	  </nav>
@@ -75,21 +70,7 @@
       </div>
     </section>
 
-    <head>
-    <style>
-      /* Add some basic styling */
-      .place {
-        display: inline-block;
-        margin: 10px;
-        text-align: center;
-      }
-      /* .place-image {
-        max-width: 370px;
-      } */
-    </style>
-  </head>
-
-    <!-- <section class="ftco-section bg-light"> -->
+    <section class="ftco-section bg-light">
     	<div class="container">
     		<div class="row justify-content-center pb-5 mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -101,7 +82,6 @@
     	<div id="search-container">
       	<div style = "text-align: center;">
 
-      
     	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
           Add New Trip Planning Data
         </button>
@@ -181,12 +161,11 @@
         $planning = $row['planning'];
         
         echo '
-        <div class="trip" >
-        <div style="display: flex justify-content: center;">
+        <div class="trip" style="display: flex;">
 
-			<div class="col-md-5 ftco-animate style="margin: 0 auto; text-align: center;"">
-			<div class="block-5">
-			<div style = "text-align: center ;">
+			<div class="col-md-4 ftco-animate">
+			<div class="block-7">
+			<div style = "text-align: center;">
 		
 			<img class="img" src="../images/'.$image.'" ></a>
 			<div class="text-center p-4">
@@ -206,17 +185,15 @@
             <i class="fa fa-edit"></i>  </button>
             <input type="hidden" name="idToDelete" 
             value="' . $tripId. '" >
-            <button type="submit" class="btn btn-danger" name="delTrip" id="delTrip" value="Delete"><i class="fa fa-trash-o"></i></button>
+            <button type="submit" class="btn btn-danger" name="deleteTrip" id="deleteTrip" value="Delete"><i class="fa fa-trash-o"></i></button>
             </form>
 
 			</div>
 			</div>
 			</div>
 			</div>
-      </div>
             
         </div>';
-
 
 
       // Update form using modal
