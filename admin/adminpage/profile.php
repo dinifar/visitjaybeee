@@ -1,43 +1,138 @@
-
 <?php
-include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
 
-// session_start();
+include_once '../../include/db_connect.php';
 
-// // Check if the 'users' index is set in the $_SESSION array
+session_start();
+
+
+if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+    $uid = $_SESSION['id'];
+
+}else{
+    $uid = '';
+}
+
+
+$updateCheck = "";
+
+
 // if (isset($_SESSION['users'])) {
-//     $id = $_SESSION['users'];
-    
-//     if ($GLOBALS['con']) {
-//         // Use prepared statements to prevent SQL injection
-//         $stmt = $GLOBALS['con']->prepare("SELECT * FROM users WHERE id = ?");
-//         $stmt->bind_param("s", $id);
-//         $stmt->execute();
-//         $result = $stmt->get_result();
+//   //header("Location: ..admin dashboard/index.php");
+// }
 
-//         if ($result->num_rows > 0) {
-//             $userRecord = $result->fetch_assoc();
-//             $id = $userRecord['id'];
-//             $name = $userRecord['name'];
-//             $user_name = $userRecord['user_name'];
-//             $password = $userRecord['password'];
-//             $phoneNum = $userRecord['phoneNum'];
-//         } else {
-//             echo "No user found.";
-//         }
-        
-//         $stmt->close();
-//     } else {
-//         echo mysqli_error($GLOBALS['con']);
-//     }
-// } else {
-//     echo "User session not set.";
-//     // Redirect the user to the login page or handle the missing session appropriately
+if (!isset($_SESSION['id'])) {
+    header('Location: ../login/Login_v8/login.php');
+}else{
+
+    $sql = "select * from users WHERE id = '$uid' ";
+    $result = mysqli_query($GLOBALS['con'], $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    $fname = $row['name'];
+    $uname = $row['user_name'];
+    $mobile = $row['phoneNum'];
+
+}
+
+if(isset($_POST['update'])){
+
+    $nameUp = $_POST['Name'];
+    $passwordUp = $_POST['password'];
+    $conpasswordUp = $_POST['password2'];
+    $PhoneNumUp = $_POST['PhoneNum'];
+
+
+    $sqlUp = "Update users SET name = '$nameUp', phoneNum = '$PhoneNumUp' ";
+
+    if(!empty($passwordUp)){
+        if($passwordUp != $conpasswordUp){
+            echo "<script>alert('Password Not Matched!');</script>";
+            echo "<script>window.location.href = 'profile.php';</script>";
+        }else{
+            $sqlUp .= ", password = '$passwordUp'";
+        }
+    }
+
+    $sqlUp .= " WHERE id = '$uid'";
+
+    $resultUp = mysqli_query($GLOBALS['con'], $sqlUp);
+    if($resultUp){
+        // $updateCheck = "success";
+        echo "<script>alert('Update Info Successfully');</script>";
+        echo "<script>window.location.href = 'profile.php';</script>";
+    }else{
+        // $updateCheck = "error";
+        echo "<script>alert('Update Info Failed');</script>";
+        echo "<script>window.location.href = 'profile.php';</script>";
+    }
+
+}
+
+// if (isset($_GET['id'])) {
+//   $id = $_GET['id'];
+//   $_SESSION['EditprofileID'] = $id;
+//   if($con) {
+//     echo mysqli_error($GLOBALS['con']);
+//   } else {
+//     $sql = "select * from users WHERE id = '$id'";
+//     $qry = mysqli_query($con, $sql);
+//     $userRecord = mysqli_fetch_assoc($qry);
+//     $name = $userRecord['Name'];
+//     $user_name = $userRecord['user_Name'];
+//     $phoneNum = $userRecord['PhoneNum'];
+
+//   }
+// }
+
+
+// if (isset($_POST['cancel'])) {
+//   header('Location: profile.php');
+//   exit();
+// } else if (isset($_POST['update'])) {
+//   EditProfile();
 // }
 
 // if (isset($_GET['update'])) {
-//     $updateCheck = $_GET['update'];
+//   $updateCheck = $_GET['update'];
 // }
+
+
+
+// if (isset($_GET['id'])) {
+//   $id = $_GET['id'];
+//   $_SESSION['EditprofileID'] = $id;
+  
+//   if (!$GLOBALS['con']) {
+//     echo mysqli_error($GLOBALS['con']);
+//   } else {
+//     $sql = "SELECT * FROM users WHERE id = '$id'";
+//     $qry = mysqli_query($GLOBALS['con'], $sql);
+    
+//     if ($qry) {
+//       $userRecord = mysqli_fetch_assoc($qry);
+//       $name = $userRecord['Name'];
+//       $user_name = $userRecord['user_Name'];
+//       var_dump($user_name);
+//       $phoneNum = $userRecord['PhoneNum'];
+//     } else {
+//       echo mysqli_error($GLOBALS['con']);
+//     }
+//   }
+// }
+
+
+
+//   session_start();
+//   if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+//       $uid = $_SESSION['id'];
+
+//   }else{
+//       $uid = '';
+//   }
+
+
 ?>
 
 
@@ -65,7 +160,31 @@ include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.
     <link rel="stylesheet" href="css/tooplate.css">
 </head>
 
-<body class="bg04">
+<body>
+
+<?php
+  if (isset($updateCheck)) {
+    if ($updateCheck == "success") {
+      echo "<script type='text/javascript'>
+              Swal.fire(
+                'Updated!',
+                'Admin has been updated!',
+                'success'
+              )
+            </script>";
+    }else{
+        echo "<script type='text/javascript'>
+              Swal.fire(
+                'Failed!',
+                'Admin failed to updated!',
+                'error'
+              )
+            </script>";
+    }
+  }
+  ?>
+
+<div class="bg04">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -82,7 +201,7 @@ include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="indexadmin.html">HOME</a>
+                                <a class="nav-link" href="../indexadmin.php">HOME</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="admin.php">ADMIN</a>
@@ -108,39 +227,42 @@ include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.
         
         <div class="row tm-content-row tm-mt-big">
            
-            <div class="tm-col tm-col-big">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 mx-auto">
                 <div class="tm-bg-black tm-block h-100">
                     <div class="row">
                         <div class="col-12">
                             <h2 class="tm-block-title">Profile Account</h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="" class="tm-signup-form">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7 col-lg-7 col-12">
+                            <form action="" class="tm-editadmin-form" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+
                                 <div class="form-group">
-                                    <label for="name">Account Name</label>
-                                    <input placeholder="Name" id="name" name="name" type="text" class="form-control validate">
+                                    <label for="name1">Account Name</label>
+                                    <input placeholder="Full Name" id="name1" name='Name' type="text" class="form-control" value="<?php echo $fname; ?>" required>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="username1">Account Email (Non Editable)</label>
+                                    <input placeholder="Email address" id="username1" name='user_Name' type="email" class="form-control" value="<?php echo $uname; ?>" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Account Email</label>
-                                    <input placeholder="Email address" id="email" name="email" type="email" class="form-control validate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input placeholder="******" id="password" name="password" type="password" class="form-control validate">
+                                    <label for="password">Password (Optional)</label>
+                                    <input placeholder="******" id="password" name="password" type="password" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="password2">Re-enter Password</label>
-                                    <input placeholder="******" id="password2" name="password2" type="password" class="form-control validate">
+                                    <input placeholder="******" id="password2" name="password2" type="password" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input placeholder="No-Phone" id="phone" name="phone" type="tel" class="form-control validate">
+                                    <label for="phoneNum1">Phone</label>
+                                    <input placeholder="No-Phone" id="phoneNum1" name='PhoneNum' type="tel" class="form-control " value="<?php echo $mobile; ?>" required>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-sm-4">
-                                        <button type="submit" class="btn btn-primary">Update
+                                        <button type="submit" name="update" Value="Submmit" id ="submit" class="btn btn-primary">Update
                                         </button>
                                     </div>
                                     
@@ -172,3 +294,4 @@ include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.
 </body>
 
 </html>
+
