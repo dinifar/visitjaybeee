@@ -1,6 +1,6 @@
 <?php 
-if (isset($_POST['deleteTrip'])) {
-    delPlacesInfo($_POST['deleteTrip']);
+if (isset($_POST['delTrip'])) {
+    delTrip();
 }
 
 ?>
@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 }
 
 // Retrieve form data
-$placeId = $_POST['id'];
+$tripId = $_POST['id'];
 $image = $_POST['image'];
 $package = $_POST['package'];
 $price = $_POST['price'];
@@ -42,7 +42,7 @@ if ($conn->query($sql) === TRUE) {
 <?php 
 
 
-function delPlacesInfo(){
+function delTrip(){
 
     $sname= "localhost";
     $unmae= "root";

@@ -1,9 +1,11 @@
 <?php
 
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbName = "visitjaybeee";
+$sname= "localhost";
+$unmae= "root";
+$password = "";
 
-$GLOBALS['con'] = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+$db_name = "visitjaybeee";
+
+
+$GLOBALS['con'] = mysqli_connect($sname, $unmae, $password, $db_name);
 

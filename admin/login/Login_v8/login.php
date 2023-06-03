@@ -1,3 +1,25 @@
+<?php 
+  
+  session_start();
+  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+
+      $uid = $_SESSION['id'];
+
+  }else{
+      $uid = '';
+  }
+
+
+session_start();
+if (isset($_SESSION['users'])) {
+	//header("Location: ..admin dashboard/index.php");
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +108,6 @@
 
 	<script>
 		// Add an event listener to the login button
-        echo "<script type='text/javascript">;   
 		document.getElementById('loginButton').addEventListener('click', function(event) {
 			event.preventDefault(); // Prevent the form submission
 			
@@ -109,7 +130,8 @@
                         icon: 'success',
                         closeOnClickOutside: false,
                     }).then(function() {
-                        window.location.href = '../admin/adminpage/admin.php';
+                        window.location.href = '../../adminpage/admin.php';
+					
                     });
                 } else {
 						// Login failed, display error message
