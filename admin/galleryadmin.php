@@ -59,7 +59,7 @@
           <?php if(!empty($uid)){?>
             <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
           <?php }else{ ?>
-      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+      			<a href="login\Login_v8\login.php" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
           <?php } ?>
 	      </div>
 	    </div>
