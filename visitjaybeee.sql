@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2023 at 04:19 AM
+-- Generation Time: Jun 07, 2023 at 03:10 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -133,8 +133,19 @@ INSERT INTO `places` (`id`, `name`, `image`, `category`, `link`) VALUES
 (114, 'Big Food F&B', 'bigfood.jpg', 'Popular Eatery', 'http://bigfoodfnb.biz/bigfood/about.php'),
 (115, 'Anjung Senibong Restoran', 'senibong.jpg', 'Popular Eatery', 'https://shorturl.at/djDE3'),
 (116, 'KopiLoco', 'kopi.JPG', 'Popular Eatery', 'https://shorturl.at/sJKPX'),
-(117, 'Menate Steak Hub', 'menate.jpeg', 'Popular Eatery', 'https://menate.com.my/our-menu/'),
-(122, 'Transportation Lurve', 'utm.jpg', '', '');
+(117, 'Menate Steak Hub', 'menate.jpeg', 'Popular Eatery', 'https://menate.com.my/our-menu/');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `translation`
+--
+
+CREATE TABLE `translation` (
+  `id` int(11) NOT NULL,
+  `english` varchar(255) NOT NULL,
+  `malay` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -182,7 +193,7 @@ INSERT INTO `trip` (`id`, `image`, `package`, `price`, `planning`) VALUES
 (7, 'solotraveler.jpg', 'Solo Traveler', 330, 'SoloTraveler.png'),
 (9, 'family.jpg', 'Family Pax', 490, 'SoloTraveler2.png'),
 (11, 'student.jpg', 'Student/Group', 470, 'Solo Traveler (3).png'),
-(14, '', '', 0, '');
+(14, 'about-6.jpg', 'try', 80, 'about-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -221,6 +232,12 @@ ALTER TABLE `places`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `translation`
+--
+ALTER TABLE `translation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transportation`
 --
 ALTER TABLE `transportation`
@@ -249,6 +266,12 @@ ALTER TABLE `places`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
+-- AUTO_INCREMENT for table `translation`
+--
+ALTER TABLE `translation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `transportation`
 --
 ALTER TABLE `transportation`
@@ -258,7 +281,7 @@ ALTER TABLE `transportation`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
