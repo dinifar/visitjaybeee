@@ -34,12 +34,12 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="gallery.php" class="nav-link">Places</a></li>
-	        	<li class="nav-item"><a href="translation.php" class="nav-link">Translation Services</a></li>
-	          <li class="nav-item"><a href="transportation.php" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item active"><a href="trip.php" class="nav-link">Trip Planning</a></li>
+	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
+	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
+	          <li class="nav-item active"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -57,16 +57,31 @@
       </div>
     </section>
 
+    <head>
+    <style>
+      /* Add some basic styling */
+      .planning {
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+      }
+       .place-images {
+        max-width: 370px;
+      } 
+    </style>
+  </head>
+
     <section class="ftco-section bg-light">
-    	<div class="container">
+    	
     		<div class="row justify-content-center pb-5 mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h2>AFFORDABLE BUDGET</h2>
           </div>
         </div>
-		<div id="tripList">
+    
+  <div id="tripList">
 
-<?php
+  <?php
   // Connect to your database
   $sname= "localhost";
   $unmae= "root";
@@ -74,30 +89,29 @@
 
   $db_name = "visitjaybeee";
 
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+  $conn = mysqli_connect($sname, $unmae, $password, $db_name);
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
 
   // Fetch places data from the database
-  $sql = "SELECT * FROM trip";
+  $sql = "SELECT * FROM trip ";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-          $image = $row['image'];
-          $package = $row['package'];
-          $price = $row['price'];
-          $planning = $row['planning'];
-
-          echo '
-        <div class="trip">
-
-			<div class="col-md-4 ftco-animate">
-			<div class="block-7">
-			<div style = "text-align: center;">
+    while ($row = $result->fetch_assoc()) {
+        $tripId = $row['id'];
+        $image = $row['image'];
+        $package = $row['package'];
+        $price = $row['price'];
+        $planning = $row['planning'];
+        
+        echo '
+      <div class="planning block-7">
+			<div class="image-container">
+      <div align="center" >
 		
-			<img class="img" src="images/'.$image.'" ></a>
+			<img class="place-images" src="images/'.$image.'" ></a>
 			<div class="text-center p-4">
             <span class="excerpt d-block">' . $package . '</span>
 			<span class="price"><sup>RM</sup> <span class="number">' . $price . '</span> <sub>/per person</sub></span>
@@ -111,18 +125,15 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 			</div>
 			</div>
 			</div>
-			</div>
             
         </div>';
+    }
+}
 
-
-      }
-  }
-
-  $conn->close();
+$conn->close();
 ?>
-    </section>
 
+    </section>
 
     <footer class="footer">
 			<div class="container">
@@ -131,16 +142,16 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 						<h2 class="footer-heading">Trip Planning</h2>
 						<p>Travel opens your heart, broadens your mind, and fills your life with stories to tell.”</p>
 					</div>
-					
+				
 					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
-						<li><a href="index.html" class="py-2 d-block">Home</a></li>
-						<li><a href="about.html" class="py-2 d-block">About</a></li>
-						<li><a href="gallery.php" class="py-2 d-block">Places</a></li>
-						<li><a href="translation.php" class="py-2 d-block">Translation</a></li>
-						<li><a href="transportation.php" class="py-2 d-block">Transportation</a></li>
-						<li><a href="trip.php" class="py-2 d-block">Trip</a></li>
+						<li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
+						<li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
+						<li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
+						<li><a href="translationadmin.php" class="py-2 d-block">Translation</a></li>
+						<li><a href="transportationadmin.php" class="py-2 d-block">Transportation</a></li>
+						<li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">

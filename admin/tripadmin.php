@@ -70,8 +70,22 @@
       </div>
     </section>
 
+    <head>
+    <style>
+      /* Add some basic styling */
+      .planning {
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+      }
+       .place-images {
+        max-width: 370px;
+      } 
+    </style>
+  </head>
+
     <section class="ftco-section bg-light">
-    	<div class="container">
+    	
     		<div class="row justify-content-center pb-5 mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h2>AFFORDABLE BUDGET</h2>
@@ -129,7 +143,7 @@
 
     </div>
     </div>
-    </div>
+ 
 
 <br>
     
@@ -161,13 +175,11 @@
         $planning = $row['planning'];
         
         echo '
-        <div class="trip" style="display: flex;">
-
-			<div class="col-md-4 ftco-animate">
-			<div class="block-7">
-			<div style = "text-align: center;">
+      <div class="planning block-7">
+			<div class="image-container">
+      <div align="center" >
 		
-			<img class="img" src="../images/'.$image.'" ></a>
+			<img class="place-images" src="../images/'.$image.'" ></a>
 			<div class="text-center p-4">
             <span class="excerpt d-block">' . $package . '</span>
             <input type="hidden" name="idtodelete" 
@@ -190,8 +202,7 @@
 
 			</div>
 			</div>
-			</div>
-			</div>
+			
             
         </div>';
 
@@ -247,64 +258,6 @@
 $conn->close();
 ?>
 
-
-    		<!-- <div class="row">
-    			<div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/solo\ traveler.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Solo Traveler</span>
-	            	<span class="price"><sup>RM</sup> <span class="number">330</span> <sub>/per person</sub></span>
-	            
-		            <ul class="pricing-text mb-5">
-		              <li><span class="fa fa-check mr-2"></span>Routes and public transport</li>
-		              <li><span class="fa fa-check mr-2"></span>Food Recommended</li>
-		              <li><span class="fa fa-check mr-2"></span>Recommended Places</li>
-		             
-		            </ul>
-
-					<a href="images/Solo Traveler.png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
-						
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/family.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Family Pax</span>
-		            <span class="price"><sup>RM</sup> <span class="number">490</span> <sub>/per person</sub></span>
-		            
-					<ul class="pricing-text mb-5">
-						<li><span class="fa fa-check mr-2"></span>Routes and public transport</li>
-						<li><span class="fa fa-check mr-2"></span>Food Recommended</li>
-						<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
-					  </ul>
-  
-		            <a href="images/Solo Traveler (2).png" class="btn btn-primary d-block px-2 py-3">Get Started</a> -->
-					<!-- <a href="images/Solo Traveler (2).png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
-					
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	          	<div class="img" style="background-image: url(images/student.jpg);"></div>
-	            <div class="text-center p-4">
-	            	<span class="excerpt d-block">Student/Group</span>
-		            <span class="price"><sup>RM</sup> <span class="number">470</span> <sub>/per person</sub></span>
-		            
-		            <ul class="pricing-text mb-5">
-						<li><span class="fa fa-check mr-2"></span>Routes and public transport</li>
-						<li><span class="fa fa-check mr-2"></span>Food Recommended</li>
-						<li><span class="fa fa-check mr-2"></span>Recommended Places</li>
-					  </ul>
-					<a href="images/Solo Traveler (3).png" class="icon image-popup d-flex justify-content-center align-items-center btn btn-primary d-block px-2 py-3">Trip Planning</a>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-    	</div> -->
     </section>
 
     <footer class="footer">

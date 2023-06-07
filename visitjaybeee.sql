@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2023 at 03:10 AM
+-- Generation Time: Jun 07, 2023 at 06:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -193,7 +193,10 @@ INSERT INTO `trip` (`id`, `image`, `package`, `price`, `planning`) VALUES
 (7, 'solotraveler.jpg', 'Solo Traveler', 330, 'SoloTraveler.png'),
 (9, 'family.jpg', 'Family Pax', 490, 'SoloTraveler2.png'),
 (11, 'student.jpg', 'Student/Group', 470, 'Solo Traveler (3).png'),
-(14, 'about-6.jpg', 'try', 80, 'about-1.jpg');
+(14, 'about-6.jpg', 'try', 80, 'about-1.jpg'),
+(18, 'bg_3.jpg', 'try', 456, 'bg_4.jpg'),
+(20, 'bg_4.jpg', 'try 87', 8000, 'bloom.jpg'),
+(21, 'little.png', 'try 7', 7, 'ksl.jpg');
 
 -- --------------------------------------------------------
 
@@ -281,7 +284,7 @@ ALTER TABLE `transportation`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
