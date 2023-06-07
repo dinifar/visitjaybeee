@@ -40,8 +40,8 @@
 	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="gallery.php" class="nav-link">Places</a></li>
-	        	<li class="nav-item active"><a href="translation.html" class="nav-link">Translation Services</a></li>
-	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
+	        	<li class="nav-item active"><a href="translation.php" class="nav-link">Translation Services</a></li>
+	          <li class="nav-item"><a href="transportation.php" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="trip.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 	      </div>
@@ -159,8 +159,8 @@
 							<li><a href="index.html" class="py-2 d-block">Home</a></li>
 							<li><a href="about.html" class="py-2 d-block">About</a></li>
 							<li><a href="gallery.php" class="py-2 d-block">Places</a></li>
-							<li><a href="translation.html" class="py-2 d-block">Translation</a></li>
-							<li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
+							<li><a href="translation.php" class="py-2 d-block">Translation</a></li>
+							<li><a href="transportation.php" class="py-2 d-block">Transportation</a></li>
 							<li><a href="trip.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>

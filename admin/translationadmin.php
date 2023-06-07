@@ -54,7 +54,7 @@
 	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
 	        	<li class="nav-item active"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
-	          <li class="nav-item"><a href="transportation.html" class="nav-link">Transport and Routes</a></li>
+	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Planning</a></li>
 	        </ul>
 
@@ -179,8 +179,8 @@
 							<li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
 							<li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
 							<li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
-							<li><a href="translation.html" class="py-2 d-block">Translation</a></li>
-							<li><a href="transportation.html" class="py-2 d-block">Transportation</a></li>
+							<li><a href="translationadmin.php" class="py-2 d-block">Translation</a></li>
+							<li><a href="transportationadmin.php" class="py-2 d-block">Transportation</a></li>
 							<li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
