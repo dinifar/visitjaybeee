@@ -1,5 +1,5 @@
 <?php
-include_once '../../include/db_connect.php';
+include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
 // Retrieve data from the "users" table
 $userQuery = "SELECT * FROM users";
 $userResult = mysqli_query($GLOBALS['con'], $userQuery);
@@ -43,6 +43,9 @@ if (isset($_GET['delCategory']))
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
+    <link rel="stylesheet" type="text/css" href="sweetalert.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
 </head>
 
 <body class="bg02">
@@ -76,7 +79,7 @@ if (isset($_GET['delCategory']))
                             </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex" href="login.html">
+                                    <a class="nav-link d-flex" href="login.php">
                                         <i class="far fa-user mr-2 tm-logout-icon"></i>
                                         <span>Logout</span>
                                     </a>
@@ -127,22 +130,27 @@ if (isset($_GET['delCategory']))
 
             <tr>
                 <th scope="row">
-                    <input type="checkbox" aria-label="Checkbox">
+                    <!-- <input type="checkbox" aria-label="Checkbox"> -->
                 </th>
                 <td class="tm-product-name"><?php echo $name; ?></td>
                 <td><?php echo $phoneNum; ?></td>
                 <form action="function.php" class="tm-del-form" method="POST">
                 <input type="hidden" name="delAdmin" value="<?php echo $id; ?>">
-                <td><button value="<?php echo $id; ?>" id="submit" type="submit" name="delAdmin">
+                <td><button value="<?php echo $id; ?>" id="submit" type="submit" name="delAdmin" >
                 <i class="fas fa-trash-alt tm-trash-icon" ></i></button></form></td>
+                
             </tr>
+
+            
             <?php
         }
     } else {
         echo "<tr><td colspan='4'>No data available</td></tr>";
     }
     ?>
-                      
+       
+
+    
 </tbody>
 </table>
 </div>
@@ -188,7 +196,8 @@ if (isset($_GET['delCategory']))
                 <form action="function.php" class="tm-del-form" method="POST">
                 <input type="hidden" name="delCategory" value="<?php echo $id; ?>">
                 <td><button value="<?php echo $id; ?>" id="submit" type="submit" name="delCategory">
-                <i class="fas fa-trash-alt tm-trash-icon" ></i></button></form></td>
+                <i class="fas fa-trash-alt tm-trash-icon" ></i></button></form>
+</td>
                
             </tr>
             <?php
@@ -206,10 +215,12 @@ if (isset($_GET['delCategory']))
         </div>
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
    
 </body>
 </html>

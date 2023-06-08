@@ -213,7 +213,7 @@ if(isset($_POST['update'])){
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link d-flex" href="login.html">
+                                <a class="nav-link d-flex" href="login.php">
                                     <i class="far fa-user mr-2 tm-logout-icon"></i>
                                     <span>Logout</span>
                                 </a>

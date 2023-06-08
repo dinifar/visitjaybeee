@@ -1,5 +1,6 @@
 <?php
-include_once 'C:/xampp/htdocs/visitjaybeee/include/db_connect.php';
+
+include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
 
   session_start();
 
@@ -22,10 +23,18 @@ if (isset($_POST['addcategory'])) {
     header('location: admin.php?msg=delSuccess');
     exit();
 }
-    else {
-    header('location: ../adminpage/admin.php');
+
+elseif (isset($_POST['Editprofile'])) {
+    EditProfile();
+    header('location: profile.php?msg=delSuccess');
     exit();
 }
+    else {
+    header('location: ../adminpage/profile.php');
+    exit();
+}
+
+
 
 function addcategory()
 {
@@ -97,8 +106,7 @@ function delCategory(){
     if (!$GLOBALS['con']) {
         echo mysqli_error($GLOBALS['con']);
     } else {
-        
-     
+            
    
     $id = $_POST ['delCategory'];
     $sql= "DELETE FROM category WHERE id='$id'";
@@ -112,5 +120,92 @@ if (!mysqli_query($GLOBALS['con'], $sql)) {
     return 0;
 }
 }
+
+
+// 
+function EditProfile(){
+
+if (!$GLOBALS['con']) {
+    echo mysqli_error($GLOBALS['con']);
+} else
+
+// Retrieve form data
+$id = $_POST['id'];
+$name = $_POST['name'];
+$user_name = $_POST['user_name'];
+$password = $_POST['password'];
+$phoneNum = $_POST['phoneNum'];
+$message = "Admin updated successfully";
+
+// Update place data in the database
+$sql = "UPDATE users SET name='$name', user_name='$user_name', password='$password', phoneNum='$phoneNum' WHERE id='$id'";
+if (!$GLOBALS['con']->query($sql) === TRUE) {
+    echo "<script>alert('$message');
+    window.location.href='galleryadmin.php';
+    </script>";
+} else {
+    echo "Error: " . $sql . "<br>" . !$GLOBALS['con']->error;
+}
+}
+
+// $conn->close();
+
+// {
+//     if (!$GLOBALS['con']) {
+//         echo mysqli_error($GLOBALS['con']);
+//         return;
+//     }
+
+//     // Retrieve the form field values using $_POST
+//     $id = $_POST['id'];
+//     $name = $_POST['name'];
+//     $user_name = $_POST['user_name'];
+//     $password = $_POST['password'];
+//     $phoneNum = $_POST['phone_Num'];
+
+//     $message = "Profile updated successfully";
+
+//     // Prepare the update query using a prepared statement to prevent SQL injection
+//     $stmt = $GLOBALS['con']->prepare("UPDATE users SET name=?, user_name=?, password=?, phoneNum=? WHERE id=?");
+//     $stmt->bind_param("ssssi", $name, $user_name, $password, $phoneNum, $id);
+
+//     // Execute the update query
+//     if ($stmt->execute()) {
+//         echo "<script>alert('$message');
+//         window.location.href='profile.php';
+//         </script>";
+//     } else {
+//         echo "Error: " . $stmt->error;
+//     }
+
+//     $stmt->close();
+// }
+
+
+// {
+//   if (!$GLOBALS['con']) {
+//     echo mysqli_error($GLOBALS['con']);
+//   } else {
+//     //Construct SQL statement
+//     $id = $_SESSION['EditprofileID'];
+//     // $id = $_POST['id'];
+//     $name = $_POST['name1'];
+//     $user_name = $_POST['username1'];
+//     // $password = $_POST['password'];
+//     $phoneNum = $_POST['phoneNum1'];
+
+//     $sql = "UPDATE users SET name1='$name', username1='$user_name', phoneNum1='$phoneNum',  WHERE id='$id'";
+//   }
+//   if (!mysqli_query($GLOBALS['con'], $sql)) {
+//     //echo mysqli_error($GLOBALS['con']);
+//     header('Location: profile.php?id=' . $id . '&update=failed');
+//   } else {
+//     echo 'Error: ' . mysqli_error($GLOBALS['con']);
+//   }
+
+
+//   header('Location: profile.php?id=' . $id . '&update=success');
+//   exit();
+// }
 
 ?>
