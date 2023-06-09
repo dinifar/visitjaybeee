@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2023 at 06:24 PM
+-- Generation Time: Jun 09, 2023 at 04:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -147,6 +147,17 @@ CREATE TABLE `translation` (
   `malay` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `translation`
+--
+
+INSERT INTO `translation` (`id`, `english`, `malay`) VALUES
+(1, 'how much is this?', 'ini berapa?'),
+(4, 'How to go to this place?', 'Bagaimana untuk pergi ke tempat ini?'),
+(5, 'Thank you very much!', 'Terima kasih!'),
+(6, 'How are you?', 'Apa khabar?'),
+(7, 'Can I get a discount?', 'Kasi murah?');
+
 -- --------------------------------------------------------
 
 --
@@ -195,8 +206,8 @@ INSERT INTO `trip` (`id`, `image`, `package`, `price`, `planning`) VALUES
 (11, 'student.jpg', 'Student/Group', 470, 'Solo Traveler (3).png'),
 (14, 'about-6.jpg', 'try', 80, 'about-1.jpg'),
 (18, 'bg_3.jpg', 'try', 456, 'bg_4.jpg'),
-(20, 'bg_4.jpg', 'try 87', 8000, 'bloom.jpg'),
-(21, 'little.png', 'try 7', 7, 'ksl.jpg');
+(20, 'country.jpg', 'try 87', 800, ''),
+(21, 'bigfood.jpg', 'try try', 100, 'bloom.jpg');
 
 -- --------------------------------------------------------
 
@@ -217,7 +228,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `phoneNum`) VALUES
-(1, 'qarin', 'qarin123', 'Nur Qarin Sofiya', 1345423565),
+(1, 'qarin', 'qarin234', 'Nur Qarin Lisa', 1345423565),
 (4, 'lalisa@gmail.com', 'lisa01', 'Lalisa Manoban', 1234567891),
 (5, 'kimgyu@gmail.com', 'migyu12', 'Kim Mingyu', 1723459603),
 (6, 'chennie@gmail.com', 'chenchen', 'Chen', 1110107127),
@@ -272,7 +283,7 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `translation`
 --
 ALTER TABLE `translation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transportation`
@@ -284,7 +295,7 @@ ALTER TABLE `transportation`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`

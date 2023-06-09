@@ -34,12 +34,12 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
-	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
-	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item active"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
+	        	<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="gallery.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="translation.php" class="nav-link">Translation Services</a></li>
+	          <li class="nav-item"><a href="transportation.php" class="nav-link">Transport and Routes</a></li>
+	          <li class="nav-item active"><a href="trip.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 	      </div>
 	    </div>

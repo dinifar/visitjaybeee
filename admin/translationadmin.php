@@ -80,52 +80,17 @@
       </div>
     </section>
 
-    <section class="ftco-section bg-light">
+<br> 
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-7 heading-section text-center ftco-animate">
 						<h2 >Basic Translation</h2>
-            <br>
 					</div>
-          
 				</div>
-
-				<!--start table-->
-
-				<div class="row justify-content-center">
-
-					<table>
-						<tr>
-						  <th style = "width:50%">English</th>
-						  <th style = "width:50%">Malay</th>
-						</tr>
-						<tr>
-						  <td>How much is this?</td>
-						  <td>Berapa harga untuk ini?</td>
-						</tr>
-						<tr>
-							<td>How to go to this place?</td>
-							<td>Bagaimana untuk pergi ke tempat ini?</td>
-						</tr>
-						<tr>
-							<td>Thank you very much!</td>
-							<td>Terima kasih!</td>
-						</tr>
-						<tr>
-							<td>How are you?</td>
-							<td>Apa khabar?</td>
-						</tr>
-						<tr>
-							<td>Can I get a discount?</td>
-							<td>Kasi murah?</td>
-						</tr>
-					</table>
-
 					
 					<div class="col-md-12">
-						
 						<div class="wrapper">
-							<br><br>
+							<br>
 							<div class="dbox w-100 text-center">
 								<div class="text-input">
 								  <textarea spellcheck="false" class="from-text" placeholder="Enter text"></textarea>
@@ -150,15 +115,115 @@
 								</ul>
 								<button>Translate Text</button>
 							</div>
-
-							<br>
 							
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+		
+			<div class="wrapper">
+			<div id="search-container">
+			<div style = "text-align: center;">
 
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+			Add New Translation
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Add New Translation</h5>
+					
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				
+				<form method="POST" action="datatranslation.php">
+
+				<div class="form-group">
+				<label for="name">English:</label>
+				<input type="text" name="english" required></div>
+
+				<div class="form-group">
+				<label for="name">Malay:</label>
+				<input type="text" name="malay" required></div>
+
+				<div class="form-group">
+
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" value="Save Changes">Add Translation</button>
+				</div>
+				</div>
+			</div>
+			</div>
+
+		</div>
+		</div>
+
+
+		<br>
+		<div class="container">
+		<div class="row justify-content-center">
+		<table>
+			<tr>
+			<th style = "width:50%">English</th>
+			<th style = "width:50%">Malay</th>
+			</tr>
+		</table>
+		</div>
+		  </div>
+
+
+		<?php
+		// Connect to your database
+		$sname= "localhost";
+		$unmae= "root";
+		$password = "";
+
+		$db_name = "visitjaybeee";
+
+		$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+		if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+		}
+
+		// Fetch places data from the database
+		$sql = "SELECT * FROM translation ";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$translationId = $row['id'];
+			$english = $row['english'];
+			$malay = $row['malay'];
+			
+			echo '
+
+			<div class="container">
+			<div class="row justify-content-center">
+			<table>
+			
+				<tr>
+				<td style = "width:50%">' . $english . '</td>
+				<td style = "width:50%">' . $malay . '</td>
+				</tr>
+
+			</table>
+				</div>
+				
+			</div>';
+
+		}
+		}
+
+		$conn->close();
+		?>
+<br><br><br>
 
     <footer class="footer">
 			<div class="container">
