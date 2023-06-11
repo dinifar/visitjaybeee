@@ -171,14 +171,13 @@
 		<div class="row justify-content-center">
 		<table>
 			<tr>
-			<th style = "width:50%">English</th>
-			<th style = "width:50%">Malay</th>
+			<th>English</th>
+			<th>Malay</th>
+			<th>Action</th>
 			</tr>
-		</table>
-		</div>
-		  </div>
+		
 
-
+		<tbody>
 		<?php
 		// Connect to your database
 		$sname= "localhost";
@@ -206,23 +205,70 @@
 
 			<div class="container">
 			<div class="row justify-content-center">
-			<table>
+			
 			
 				<tr>
-				<td style = "width:50%">' . $english . '</td>
-				<td style = "width:50%">' . $malay . '</td>
+				<td>' . $english . '</td>
+				<td>' . $malay . '</td>
+				<form action="updateTranslation.php" method="POST">
+				<td> 
+				<input type="button" class="btn btn-info" value="Edit" data-toggle="modal" data-target="#exampleModalCenter' . $translationId . '">
+				  
+				<input type="hidden" name="idToDelete" value="' . $translationId. '">
+				<input type="submit" class="btn btn-danger" name="deleteTranslation" id="deleteTranslation" value="Delete"><i class="fa fa-trash-o"></i>
+				</form>
+				</td>
 				</tr>
 
-			</table>
+			
 				</div>
 				
 			</div>';
+
+			echo' <!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter' . $translationId . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Update Translation Details</h5>
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+				  <form method="POST" action="updateTranslation.php">
+				  <input type="hidden" name="id" value="' . $translationId . '" >
+	
+				  <div class="form-group">
+				  <label for="english">English:</label>
+				  <input type="text" name="english" value="' .$english.'" ><br>
+				  </div>
+	
+				  <div class="form-group">
+				  <label for="malay">Malay:</label>
+				  <input type="text" name="malay" value="' .$malay.'" ><br>
+				  </div>
+				  
+				  </div>
+				  <div class="modal-footer" align="center">
+					<input type="button" class="btn btn-secondary" data-dismiss="modal" value="Close"></button>
+					<input type="submit" class="btn btn-primary" value="Save Changes" id="updateTranslation"></button>
+				  </div>
+				  </form>
+				</div>
+			  </div>
+			</div>';
+
+
+			
 
 		}
 		}
 
 		$conn->close();
 		?>
+		</tbody>
+		</table>
+	</div></div>
 <br><br><br>
 
     <footer class="footer">

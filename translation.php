@@ -74,32 +74,54 @@
 
 				<div class="row justify-content-center">
 
-					<table>
+				<table>
+				<tr>
+					<th>English</th>
+					<th>Malay</th>
+				</tr>
+		
+
+				<tbody>
+				<?php
+				// Connect to your database
+				$sname= "localhost";
+				$unmae= "root";
+				$password = "";
+
+				$db_name = "visitjaybeee";
+
+				$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+				if ($conn->connect_error) {
+				die("Connection failed: " . $conn->connect_error);
+				}
+
+				// Fetch places data from the database
+				$sql = "SELECT * FROM translation ";
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+					$translationId = $row['id'];
+					$english = $row['english'];
+					$malay = $row['malay'];
+					
+					echo '
+
+					
 						<tr>
-						  <th style = "width:50%">English</th>
-						  <th style = "width:50%">Malay</th>
+						<td>' . $english . '</td>
+						<td>' . $malay . '</td>
 						</tr>
-						<tr>
-						  <td>How much is this?</td>
-						  <td>Berapa harga untuk ini?</td>
-						</tr>
-						<tr>
-							<td>How to go to this place?</td>
-							<td>Bagaimana untuk pergi ke tempat ini?</td>
-						</tr>
-						<tr>
-							<td>Thank you very much!</td>
-							<td>Terima kasih!</td>
-						</tr>
-						<tr>
-							<td>How are you?</td>
-							<td>Apa khabar?</td>
-						</tr>
-						<tr>
-							<td>Can I get a discount?</td>
-							<td>Kasi murah?</td>
-						</tr>
-					</table>
+						</div>
+						
+					</div>';
+				}
+				}
+
+				$conn->close();
+				?>
+				</tbody>
+				</table>
 
 					
 					<div class="col-md-12">
