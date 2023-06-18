@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2023 at 04:55 AM
+-- Generation Time: Jun 18, 2023 at 10:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,6 +42,18 @@ INSERT INTO `category` (`id`, `adname`, `explaination`, `task`) VALUES
 (2, 'Nadia Ainaa', 'Translation for the page', 'Translation'),
 (3, 'Fazreen Laila', 'Places in Johor Bahru', 'Places'),
 (4, 'Dini Farizah', 'Routes and Transportation update.', 'Routes and Transportation');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data`
+--
+
+CREATE TABLE `data` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -220,24 +232,31 @@ CREATE TABLE `users` (
   `user_name` varchar(20) NOT NULL,
   `password` varchar(8) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phoneNum` int(11) NOT NULL
+  `phoneNum` int(11) NOT NULL,
+  `type` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `phoneNum`) VALUES
-(1, 'qarin', 'qarin234', 'Nur Qarin Lisa', 1345423565),
-(4, 'lalisa@gmail.com', 'lisa01', 'Lalisa Manoban', 1234567891),
-(5, 'kimgyu@gmail.com', 'migyu12', 'Kim Mingyu', 1723459603),
-(6, 'chennie@gmail.com', 'chenchen', 'Chen', 1110107127),
-(7, 'jiminpark@gmail.com', 'jimin07', 'Park Jimin', 1110109127),
-(8, 'yeonsang@gmail.com', 'kyeongsa', 'Kang Yeonsang', 1110109876);
+INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `phoneNum`, `type`) VALUES
+(1, 'qarin', 'qarin234', 'Nur Qarin Lisa', 1345423565, 1),
+(4, 'lalisa@gmail.com', 'lisa01', 'Lalisa Manoban', 1234567891, 0),
+(5, 'kimgyu@gmail.com', 'migyu12', 'Kim Mingyu', 1723459603, 0),
+(6, 'chennie@gmail.com', 'chenchen', 'Chen', 1110107127, 0),
+(7, 'jiminpark@gmail.com', 'jimin07', 'Park Jimin', 1110109127, 0),
+(8, 'yeonsang@gmail.com', 'kyeongsa', 'Kang Yeonsang', 1110109876, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `places`
@@ -272,6 +291,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `data`
+--
+ALTER TABLE `data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `places`

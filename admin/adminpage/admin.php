@@ -1,5 +1,5 @@
 <?php
-include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
+include_once 'C:\xampp\htdocs\visitjaybeee\include\db_connect.php';
 // Retrieve data from the "users" table
 $userQuery = "SELECT * FROM users";
 $userResult = mysqli_query($GLOBALS['con'], $userQuery);
@@ -25,6 +25,7 @@ if (isset($_GET['delCategory']))
 <html lang="en">
 
 <head>
+<link rel="icon" href="../images/logo.png" type="image/ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -55,7 +56,7 @@ if (isset($_GET['delCategory']))
                     <nav class="navbar navbar-expand-xl navbar-light bg-light">
                         <a class="navbar-brand" href="Admin.php">
                             <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
-                            <h1 class="tm-site-title mb-0">Dashboard</h1>
+                            <h1 class="tm-site-title mb-0">Admin</h1>
                         </a>
                         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">

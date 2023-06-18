@@ -31,13 +31,27 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION['username'] = $row['user_name'];
     $_SESSION['id'] = $row['id'];
 
-    // Prepare the response
-    $response = array('success' => true);
-    echo json_encode($response);
+    // Check the user type
+    if ($row['type'] == 0) {
+        ob_start();
+        // User is an admin, redirect to indexadmin.php
+        header("Location: ..\..\..\admin\indexadmin.php");
+        ob_end_flush();
+        exit();
+    } elseif ($row['type'] == 1) {
+        ob_start();
+        // User is a superadmin, redirect to admin.php
+        header("Location: ..\..\adminpage\admin.php");
+        ob_end_flush();
+        exit();
+    }
 } else {
     // Login failed, display error message
-    $response = array('success' => false);
-    echo json_encode($response);
+    $_SESSION['login_error'] = true;
+    ob_start();
+    header("Location: login.php");
+    ob_end_flush();
+    exit();
 }
 
 // Close the database connection

@@ -1,20 +1,20 @@
-<?php 
-  
-  session_start();
-  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
-
-      $uid = $_SESSION['id'];
-
-  }else{
-      $uid = '';
-  }
-
-
-
-if (isset($_SESSION['users'])) {
-	//header("Location: ..admin dashboard/index.php");
+<?php
+session_start();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    $uid = $_SESSION['id'];
+} else {
+    $uid = '';
 }
 
+if (isset($_SESSION['users'])) {
+    //header("Location: ..admin dashboard/index.php");
+}
+
+// Check if login error occurred
+if (isset($_SESSION['login_error']) && $_SESSION['login_error'] === true) {
+    echo '<script>swal("Invalid username or password.", "", "error");</script>';
+    unset($_SESSION['login_error']);
+}
 ?>
 
 
@@ -106,45 +106,6 @@ if (isset($_SESSION['users'])) {
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
-	<script>
-		// Add an event listener to the login button
-		document.getElementById('loginButton').addEventListener('click', function(event) {
-			event.preventDefault(); // Prevent the form submission
-			
-			// Get the form data
-			var username = document.getElementsByName('username')[0].value;
-			var password = document.getElementsByName('password')[0].value;
-			
-			// Perform AJAX login request
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'function.php', true);
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.onload = function() {
-				if (xhr.status === 200) {
-					var response = JSON.parse(xhr.responseText);
-					if (response.success) {
-						// Login successful, redirect to home page
-						swal({
-                        title: 'Success',
-                        text: '',
-                        icon: 'success',
-                        closeOnClickOutside: false,
-                    }).then(function() {
-                        window.location.href = '../../adminpage/admin.php';
-					
-                    });
-                } else {
-						// Login failed, display error message
-						swal('Invalid username or password.', '', 'error');
-					}
-				} else {
-					// Error occurred, display error message
-					swal('An error occurred. Please try again later.', '', 'error');
-				}
-			};
-			xhr.send('username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password));
-		});
-	</script>
 
 </body>
 </html>

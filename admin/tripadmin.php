@@ -54,6 +54,12 @@
 	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
 	          <li class="nav-item active"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
+          <?php if(!empty($uid)){?>
+            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+            <a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
+          <?php }else{ ?>
+      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+          <?php } ?>
 	      </div>
 	    </div>
 	  </nav>
