@@ -1,5 +1,5 @@
 <?php
-include_once 'C:/xampp/htdocs/visitjaybeee/include/db_connect.php';
+include_once 'C:/xampp/htdocs/mastervisitjaybee/visitjaybeee/include/db_connect.php';
 if (isset($_GET['addadmin'])) {
 }
 

@@ -1,5 +1,5 @@
 <?php
-include_once 'C:/xampp/htdocs/visitjaybeee/include/db_connect.php';
+include_once 'C:/xampp/htdocs/mastervisitjaybee/visitjaybeee/include/db_connect.php';
 if (isset($_GET['addcategory'])) {
 }
 
@@ -29,6 +29,9 @@ if (isset($_GET['addcategory'])) {
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
     <script src="script.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="bg03">
@@ -86,7 +89,7 @@ if (isset($_GET['addcategory'])) {
                     </div>
                     <div class="row mt-4 tm-edit-admin-row justify-content-center">
                         <div class="col-xl-7 col-lg-7 col-md-12">
-                            <form action="function.php" class="tm-add-admin-form" method="POST">
+                            <form action="function.php" class="tm-add-category-form" method="POST">
                                 <div class="input-group mb-3">
                                     <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label text-center">Admin
                                         Name
@@ -119,20 +122,48 @@ if (isset($_GET['addcategory'])) {
                 </div>
                 </div>
 
-        <!-- <footer class="row tm-mt-small">
-            <div class="col-12 font-weight-light">
-                <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                    Copyright &copy; 2018. Created by
-                    <a href="http://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a> |  Distributed by <a href="https://themewagon.com" class="text-white tm-footer-link">ThemeWagon</a>
-                </p>
-            </div>
-        </footer> -->
+       
     </div>
 
     </div>
+ 
+     <script src="js/jquery-3.3.1.min.js"></script>  
+     <script src="js/bootstrap.min.js"></script>  
 
-    <script src="js/jquery-3.3.1.min.js"></script> 
-    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+  $(document).ready(function() {
+    $(".tm-add-category-form").on("submit", function(e) {
+      e.preventDefault();
+      
+      // Perform form submission via AJAX
+      $.ajax({
+        type: "POST",
+        url: "function.php",
+        data: $(this).serialize(),
+        success: function(response) {
+          // Show SweetAlert success message
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Category added successfully!",
+          }).then(function() {
+            // Optionally redirect to another page after successful submission
+            window.location.href = "addcategory.php";
+          });
+        },
+        error: function() {
+          // Show SweetAlert error message
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "An error occurred while adding the category.",
+          });
+        }
+      });
+    });
+  });
+</script>
   
 </body>
 
