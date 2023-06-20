@@ -1,250 +1,186 @@
-<?php 
-  
-  session_start();
-  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+<?php
+session_start();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+  $uid = $_SESSION['id'];
+} else {
+  $uid = '';
+}
 
-      $uid = $_SESSION['id'];
+// Connect to your database
+$sname = "localhost";
+$unmae = "root";
+$password = "";
+$db_name = "visitjaybeee";
+$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
-  }else{
-      $uid = '';
-  }
-
-
+// Fetch transportation data from the database
+$sql = "SELECT * FROM transportation";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Transportation - Visit Jaybee</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+<head>
+  <title>Transportation - Visit Jaybee</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png" type="image/ico">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
+          <li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
+          <li class="nav-item active"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
+          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
+        </ul>
+        <?php if (!empty($uid)) { ?>
+          <a href="logout.php" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
+        <?php } else { ?>
+          <a href="login.html" class="btn btn-outline-primary my-2 my-sm-0">Login</a>
+        <?php } ?>
+      </div>
+    </div>
+  </nav>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+  <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-start">
+        <div class="col-md-9 ftco-animate pb-5">
+          <h1 class="mb-3 bread">Transport and Routes</h1>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
-
-	<link rel="icon" href="images/logo.png" type="image/ico">
-  </head>
-  <body>
-
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="indexadmin.php" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
-	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
-	          <li class="nav-item active"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
-	        </ul>
-            <?php if(!empty($uid)){?>
-            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
-            <a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
-          <?php }else{ ?>
-      			<a href="login\Login_v8\login.html" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
-          <?php } ?>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
+  <section class="ftco-section bg-light">
+    <div class="container">
+    <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
       <div class="container">
-        <div class="row no-gutters slider-text align-items-end">
-          <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Pricing <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Transportation and Routes</h1>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Add New Transport</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPostModal">Add Transport</button>
           </div>
         </div>
       </div>
-    </section>
-
-    <head>
-    <style>
-      /* Add some basic styling */
-      .transportation {
-        display: inline-block;
-        margin: 10px;
-        text-align: center;
-      }
-       .place-image {
-        max-width: 370px;
-      } 
-    </style>
-  </head>
-  
-    <section class="ftco-section bg-light">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h2>Transportation and Routes in Johor Bahru</h2>
-			<br>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-          Add New Transportation
-        </button>
-          </div>
-        </div>
-
-		 <!-- Modal -->
-		 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add New Transportation</h5>
-                
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-              
-              <form method="POST" action="datatransportation.php">
-              
-              <div class="form-group">
-              <label for="imageUrl">Image URL:</label>
-              <input type="file" name="imageUrl" required> </div>
-
-              <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" name="name" required></div>
-
-              <div class="form-group">
-              <label for="Text">Captions:</label>
-              <input type="text" name="text" required> </div>
-              
-
-              <div class="form-group">
-
-              </div>
-              <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" value="Save Changes">Add Transport</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
     </div>
-    </div>
-    </div>
+  </section>
+  <br>
+  <br>
+      <div class="row d-flex">
+        <?php
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+      echo '<div class="col-md-4 d-flex ftco-animate">';
+      echo '<div class="blog-entry justify-content-end">';
+      echo '<img class="block-20" src="../transportationimages/' . $row['image'] . '" alt="Transportation">';
+      echo '<div class="text p-4 float-right d-block">';
+      echo '<div class="topper d-flex align-items-center">';
+      echo '<div class="one py-2 pl-3 pr-1 align-self-stretch">';
+      echo '</div>';
+      echo '<div class="two pl-0 pr-3 py-2 align-self-stretch">';
+      echo '</div>';
+      echo '</div>';
+      echo '<h3 class="heading mb-3"><a href="#">' . $row['name'] . '</a></h3>';
 
-    
-  <div id="transportationList">
+      // Get the first 10 words of the caption
+      $caption = implode(' ', array_slice(explode(' ', $row['caption']), 0, 10));
 
-  <?php
-  // Connect to your database
-  $sname= "localhost";
-  $unmae= "root";
-  $password = "";
+      echo '<h4 class="heading mb-3">' . $caption . ' <a href="transportation_details.php?image=' . urlencode($row['image']) . '&caption=' . urlencode($row['caption']) . '">Read More</a></h4>';
+      
+      // Add Update and Delete buttons
+      echo '<div class="buttons">';
+      echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter' . $row['id'] . '">Update</button>';
+      echo '<a href="deleteTransport.php?id=' . $row['id'] . '" class="btn btn-danger">Delete</a>';
+      echo '</div>';
 
-  $db_name = "visitjaybeee";
-
-  $conn = mysqli_connect($sname, $unmae, $password, $db_name);
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
-
-  // Fetch places data from the database
-  $sql = "SELECT * FROM transportation";
-  $result = $conn->query($sql);
-
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $transportationId = $row['id'];
-        $imageUrl = $row['image'];
-        $name = $row['name'];
-        $caption = $row['caption'];
-
-        echo '
-        
-        <div class="transportation">
-        <div class="image-container">
-        <img class="place-image" src="../transportationimages/'.$imageUrl.'" alt="' . $name . '">
-            <div style="font-size: 150%;">' . $name . '
-            <input type="hidden" name="idtodelete" 
-            value="' . $transportationId. '" ></div>
-            <div>' . $caption . '</div>
-            
-            
-            <form action="updateTransport.php" method="POST">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter' . $transportationId . '">
-            <i class="fa fa-edit"></i>  </button>
-            <input type="hidden" name="idToDelete" 
-            value="' . $transportationId. '" >
-            <button type="submit" class="btn btn-danger" name="deleteTransportation" id="deleteTransportation" value="Delete"><i class="fa fa-trash-o"></i></button>
-            </form>
-           
-        </div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
 
       // Update form using modal
-      
-       echo' <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter' . $transportationId . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Update Transportation Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-              <form method="POST" action="updateTransport.php">
-              <input type="hidden" name="id" value="' . $transportationId . '">
+      echo '<div class="modal fade" id="exampleModalCenter' . $row['id'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">';
+      echo '<div class="modal-dialog modal-dialog-centered" role="document">';
+      echo '<div class="modal-content">';
+      echo '<div class="modal-header">';
+      echo '<h5 class="modal-title" id="exampleModalLongTitle">Update Transport Details</h5>';
+      echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+      echo '<span aria-hidden="true">&times;</span>';
+      echo '</button>';
+      echo '</div>';
+      echo '<div class="modal-body">';
+      echo '<form method="POST" action="updateTransport.php">';
+      echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
 
-              <div class="form-group">
-              <label for="imageUrl">Image URL:</label>
-              <input type="file" name="imageUrl" required value="'.$imageUrl.'">
-              </div>
+      echo '<div class="form-group">';
+      echo '<label for="imageUrl">Image URL:</label>';
+      echo '<input type="file" name="imageUrl" required value="' . $row['image'] . '">';
+      echo '</div>';
 
-              <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" name="name" value="' . $name . '"><br>
-              </div>
+      echo '<div class="form-group">';
+      echo '<label for="name">Name:</label>';
+      echo '<input type="text" name="name" value="' . $row['name'] . '"><br>';
+      echo '</div>';
 
-              <div class="form-group">
-              <label for="caption">Caption:</label>
-              <input type="text" name="caption" value="' . $caption . '"><br>
-              </div>
-              
-              </div>
-              <div class="modal-footer" align="center">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn-primary" value="Save Changes" id="updateTransport"></button>
-              </div>
-              </form>
-            </div>
-          </div>
-        </div>';
-    }
+      echo '<div class="form-group">';
+echo '<label for="name">Captions:</label>';
+echo '<textarea name="name" rows="30" style="display: block; width: 100%;">' . $row['caption'] . '</textarea><br>';
+echo '</div>';
+
+
+
+      echo '<div class="modal-footer" align="center">';
+      echo '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+      echo '<input type="submit" class="btn btn-primary" value="Save Changes">';
+      echo '</div>';
+
+      echo '</form>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+      echo '</div>';
+  }
+} else {
+  echo '<div class="col-md-12 d-flex ftco-animate">';
+  echo '<div class="blog-entry justify-content-end">';
+  echo '<div class="text p-4 float-right d-block">';
+  echo '<h3 class="heading mb-3">No posts found.</h3>';
+  echo '</div>';
+  echo '</div>';
+  echo '</div>';
 }
 
-$conn->close();
 ?>
+  </section>
 
 
-</div>
-</section>
 
-
-    <footer class="footer">
+  <footer class="footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
@@ -259,12 +195,12 @@ $conn->close();
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
-							<li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
-							<li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
-							<li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
-							<li><a href="translationadmin.php" class="py-2 d-block">Translation</a></li>
-							<li><a href="transportationadmin.php" class="py-2 d-block">Transportation</a></li>
-							<li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
+              <li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
+              <li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
+              <li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
+              <li><a href="translation.php" class="py-2 d-block">Translation</a></li>
+              <li><a href="transportation.php" class="py-2 d-block">Transportation</a></li>
+			        <li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
@@ -289,31 +225,57 @@ $conn->close();
 			</div>
 		</footer>
 
-    
-  
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/jquery.easing.1.3.js"></script>
+  <script src="../js/jquery.waypoints.min.js"></script>
+  <script src="../js/jquery.stellar.min.js"></script>
+  <script src="../js/jquery.animateNumber.min.js"></script>
+  <script src="../js/bootstrap-datepicker.js"></script>
+  <script src="../js/jquery.timepicker.min.js"></script>
+  <script src="../js/owl.carousel.min.js"></script>
+  <script src="../js/jquery.magnific-popup.min.js"></script>
+  <script src="../js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-
-
-    
+  <script src="../js/google-map.js"></script>
+  <script src="../js/main.js"></script>
   </body>
 </html>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPostModalLabel">Add Transport</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  <form method="post" action="save_post.php">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="caption">Caption</label>
+      <textarea class="form-control" id="caption" name="caption" rows="50" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="image">Image:</label>
+      <input type="file" name="image" required value="'.$image.'">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+      </div>
+    </div>
+  </div>
+
