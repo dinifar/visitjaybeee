@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // Retrieve form data
-$imageUrl = $_POST['imageUrl'];
+$imageUrl = $_POST['image'];
 $name = $_POST['name'];
 $caption = $_POST['caption'];
 $message = "New transportation added successfully";

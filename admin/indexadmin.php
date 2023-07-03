@@ -1,6 +1,45 @@
 <?php 
   
   session_start();
+
+  function getUserType() {
+    $dbHost = 'localhost'; 
+    $dbUser = 'root'; 
+    $dbPass = ''; 
+    $dbName = 'visitjaybeee'; 
+
+    
+    $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+    
+    if (!$conn) {
+        die("Database connection failed: " . mysqli_connect_error());
+    }
+    
+    $uid = $_SESSION['id'];
+    
+    // Prepare and execute the SQL query
+    $sql = "SELECT type FROM users WHERE id = '$uid'";
+    $result = mysqli_query($conn, $sql);
+    
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    
+    // Fetch the user type from the result
+    $row = mysqli_fetch_assoc($result);
+	if ($row !== null) {
+        $userType = $row['type'];
+    } else {
+        // Set a default user type if the row is null
+        $userType = '0'; // Change this to the desired default user type value
+    }
+    mysqli_close($conn);
+    
+    return $userType;
+}
+
+$userType = getUserType();
+  
   if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
 
       $uid = $_SESSION['id'];
@@ -55,12 +94,26 @@
 	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 
-          <?php if(!empty($uid)){?>
-            <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
-			<a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
-          <?php }else{ ?>
-      			<a href="login\Login_v8\login.php" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
-          <?php } ?>
+          <?php
+// Assuming you have established a database connection
+// and assigned the user type to the $type variable
+
+if (!empty($uid)) {
+    ?>
+    <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+    <?php
+    if ($userType === "1") {
+        ?>
+        <a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
+        <?php
+    }
+} else {
+    ?>
+    <a href="login\Login_v8\login.php" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+    <?php
+}
+?>
+
 
 	      </div>
 	    </div>

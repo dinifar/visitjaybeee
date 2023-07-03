@@ -1,24 +1,54 @@
-<?php
-session_start();
-if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
-  $uid = $_SESSION['id'];
-} else {
-  $uid = '';
+<?php 
+  
+  session_start();
+
+  function getUserType() {
+    $dbHost = 'localhost'; 
+    $dbUser = 'root'; 
+    $dbPass = ''; 
+    $dbName = 'visitjaybeee'; 
+
+    
+    $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+    
+    if (!$conn) {
+        die("Database connection failed: " . mysqli_connect_error());
+    }
+    
+    $uid = $_SESSION['id'];
+    
+    // Prepare and execute the SQL query
+    $sql = "SELECT type FROM users WHERE id = '$uid'";
+    $result = mysqli_query($conn, $sql);
+    
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    
+    // Fetch the user type from the result
+    $row = mysqli_fetch_assoc($result);
+	if ($row !== null) {
+        $userType = $row['type'];
+    } else {
+        // Set a default user type if the row is null
+        $userType = '0'; // Change this to the desired default user type value
+    }
+    mysqli_close($conn);
+    
+    return $userType;
 }
 
-// Connect to your database
-$sname = "localhost";
-$unmae = "root";
-$password = "";
-$db_name = "visitjaybeee";
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+$userType = getUserType();
+  
+  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
 
-// Fetch transportation data from the database
-$sql = "SELECT * FROM transportation";
-$result = $conn->query($sql);
+      $uid = $_SESSION['id'];
+
+  }else{
+      $uid = '';
+  }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +86,21 @@ $result = $conn->query($sql);
           <li class="nav-item active"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
           <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
         </ul>
-        <?php if (!empty($uid)) { ?>
-          <a href="logout.php" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
-        <?php } else { ?>
-          <a href="login.html" class="btn btn-outline-primary my-2 my-sm-0">Login</a>
-        <?php } ?>
+        <?php if (!empty($uid)) {
+    ?>
+    <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+    <?php
+    if ($userType === "1") {
+        ?>
+        <a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
+        <?php
+    }
+} else {
+    ?>
+    <a href="login\Login_v8\login.php" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+    <?php
+}
+?>
       </div>
     </div>
   </nav>
@@ -148,9 +188,9 @@ if ($result->num_rows > 0) {
       echo '</div>';
 
       echo '<div class="form-group">';
-echo '<label for="name">Captions:</label>';
-echo '<textarea name="name" rows="30" style="display: block; width: 100%;">' . $row['caption'] . '</textarea><br>';
-echo '</div>';
+  echo '<label for="name">Captions:</label>';
+  echo '<textarea name="caption" rows="30" style="display: block; width: 100%;">' . $row['caption'] . '</textarea><br>';
+  echo '</div>';
 
 
 
