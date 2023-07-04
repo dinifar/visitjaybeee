@@ -1,12 +1,92 @@
+<style>
+    .transportation-image {
+      width: 75%; /* Reduce the width of the image by 50% */
+      display: block;
+    margin: 0 auto;
+    }
+  </style>
+
 <?php
-$image = $_GET['image'];
-$caption = urldecode($_GET['caption']); // Retrieve the full caption from the URL parameter
+session_start();
+
+  function getUserType() {
+    $dbHost = 'localhost'; 
+    $dbUser = 'root'; 
+    $dbPass = ''; 
+    $dbName = 'visitjaybeee'; 
+
+    
+    $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+    
+    if (!$conn) {
+        die("Database connection failed: " . mysqli_connect_error());
+    }
+    
+    $uid = $_SESSION['id'];
+    
+    // Prepare and execute the SQL query
+    $sql = "SELECT type FROM users WHERE id = '$uid'";
+    $result = mysqli_query($conn, $sql);
+    
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    
+    // Fetch the user type from the result
+    $row = mysqli_fetch_assoc($result);
+	if ($row !== null) {
+        $userType = $row['type'];
+    } else {
+        // Set a default user type if the row is null
+        $userType = '0'; // Change this to the desired default user type value
+    }
+    mysqli_close($conn);
+    
+    return $userType;
+}
+
+$userType = getUserType();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+  $uid = $_SESSION['id'];
+} else {
+  $uid = '';
+}
+
+$sname = "localhost";
+$unmae = "root";
+$password = "";
+$db_name = "visitjaybeee";
+$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the ID of the selected transportation from the URL parameter
+if (isset($_GET['id'])) {
+  $transportation_id = $_GET['id'];
+} else {
+  header("Location: transportationadmin.php"); // Redirect back to the main page if no ID is provided
+  exit;
+}
+
+// Fetch selected transportation data from the database
+$sql = "SELECT * FROM transportation WHERE id = '$transportation_id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows === 0) {
+  header("Location: transportationadmin.php"); // Redirect back to the main page if no data is found for the given ID
+  exit;
+}
+
+$row = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Transportation - Visit Jaybee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transportation Details</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
@@ -38,17 +118,27 @@ $caption = urldecode($_GET['caption']); // Retrieve the full caption from the UR
           <li class="nav-item active"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
           <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
         </ul>
-        <?php if (!empty($uid)) { ?>
-          <a href="logout.php" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
-        <?php } else { ?>
-          <a href="login.html" class="btn btn-outline-primary my-2 my-sm-0">Login</a>
-        <?php } ?>
+        <?php if (!empty($uid)) {
+    ?>
+    <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+    <?php
+    if ($userType === "1") {
+        ?>
+        <a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
+        <?php
+    }
+} else {
+    ?>
+    <a href="login\Login_v8\login.php" class="btn btn-primary mr-md-4 py-3 px-4">Login<span class="ion-ios-arrow-forward"></span></a>
+    <?php
+}
+?>
       </div>
     </div>
   </nav>
-  
+
   <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
+    <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-end justify-content-start">
         <div class="col-md-9 ftco-animate pb-5">
@@ -57,19 +147,19 @@ $caption = urldecode($_GET['caption']); // Retrieve the full caption from the UR
       </div>
     </div>
   </section>
-  
+
   <section class="ftco-section bg-light">
-    <div class="container">
-      <!-- Display the full caption -->
-      <div class="row">
-        <div class="col-md-12">
-        <p><<?php echo $image; ?></p>
-        <p><?php echo $caption; ?></p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Include the footer and necessary scripts from your original file -->
+  <div class="container">
+  <div class="row d-flex">
+    <section class="ftco-section-parallax">
+    <a href="transportationadmin.php">Go Back</a>
+    <h1><?php echo $row['name']; ?></h1>
+    <img src="../transportationimages/<?php echo $row['image']; ?>" alt="Transportation" class="transportation-image">
+    <br><br><p><?php echo $row['caption']; ?></p>
+    
+  </div>
+
+  <!-- Add your JavaScript code and dependencies here (if needed) -->
+  <script src="script.js"></script>
 </body>
 </html>

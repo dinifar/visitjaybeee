@@ -1,6 +1,5 @@
-<?php 
-  
-  session_start();
+<?php
+session_start();
 
   function getUserType() {
     $dbHost = 'localhost'; 
@@ -39,16 +38,37 @@
 }
 
 $userType = getUserType();
-  
-  if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+  $uid = $_SESSION['id'];
+} else {
+  $uid = '';
+}
 
-      $uid = $_SESSION['id'];
+// Connect to your database
+$sname = "localhost";
+$unmae = "root";
+$password = "";
+$db_name = "visitjaybeee";
+$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
-  }else{
-      $uid = '';
+
+// Fetch transportation data from the database
+$sql = "SELECT * FROM transportation";
+$result = $conn->query($sql);
+
+?>
+
+<?php
+function getLimitedCaption($caption, $limit = 10) {
+  $words = explode(" ", $caption);
+  if (count($words) > $limit) {
+    $caption = implode(" ", array_slice($words, 0, $limit)) . "...";
   }
-
-
+  return $caption;
+}
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +144,7 @@ $userType = getUserType();
         <div class="row d-flex justify-content-center">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
             <h2>Add New Transport</h2>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPostModal">Add Transport</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Transport</button>
           </div>
         </div>
       </div>
@@ -133,77 +153,38 @@ $userType = getUserType();
   <br>
   <br>
       <div class="row d-flex">
-        <?php
+      <?php
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-      echo '<div class="col-md-4 d-flex ftco-animate">';
-      echo '<div class="blog-entry justify-content-end">';
-      echo '<img class="block-20" src="../transportationimages/' . $row['image'] . '" alt="Transportation">';
-      echo '<div class="text p-4 float-right d-block">';
-      echo '<div class="topper d-flex align-items-center">';
-      echo '<div class="one py-2 pl-3 pr-1 align-self-stretch">';
-      echo '</div>';
-      echo '<div class="two pl-0 pr-3 py-2 align-self-stretch">';
-      echo '</div>';
-      echo '</div>';
-      echo '<h3 class="heading mb-3"><a href="#">' . $row['name'] . '</a></h3>';
+    echo '<div class="col-md-4 d-flex ftco-animate">';
+    echo '<div class="blog-entry justify-content-end">';
+    echo '<img class="block-20" src="../transportationimages/' . $row['image'] . '" alt="Transportation">';
+    echo '<div class="text p-4 float-right d-block">';
+    echo '<div class="topper d-flex align-items-center">';
+    echo '<div class="one py-2 pl-3 pr-1 align-self-stretch">';
+    echo '</div>';
+    echo '<div class="two pl-0 pr-3 py-2 align-self-stretch">';
+    echo '</div>';
+    echo '</div>';
+    echo '<h3 class="heading mb-3">' . $row['name'] . '</h3>';
+    echo '<h4 class="heading mb-3">' . getLimitedCaption($row['caption'], 10) . '</h4>';
+    echo '<p><a href="transportation_details.php?id=' . $row['id'] . '">Read more</a></p>';
+    echo '<p>';
 
-      // Get the first 10 words of the caption
-      $caption = implode(' ', array_slice(explode(' ', $row['caption']), 0, 10));
+    // Start of the form
+    echo '<form action="delete_transportation.php" method="post">';
+    echo '<input type="hidden" name="idToDelete" value="' . $row['id']. '">';
 
-      echo '<h4 class="heading mb-3">' . $caption . ' <a href="transportation_details.php?image=' . urlencode($row['image']) . '&caption=' . urlencode($row['caption']) . '">Read More</a></h4>';
-      
-      // Add Update and Delete buttons
-      echo '<div class="buttons">';
-      echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter' . $row['id'] . '">Update</button>';
-      echo '<a href="deleteTransport.php?id=' . $row['id'] . '" class="btn btn-danger">Delete</a>';
-      echo '</div>';
+    echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter'. $row['id'] .'"><i class="fa fa-edit"></i></button>';
+    echo '&nbsp;&nbsp;';
+    echo '<button type="submit" class="btn btn-danger" name="deleteTransportation" id="deleteTransportation" value="Delete"><i class="fa fa-trash-o"></i></button>';
 
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
+    // End of the form
+    echo '</form>';
 
-      // Update form using modal
-      echo '<div class="modal fade" id="exampleModalCenter' . $row['id'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">';
-      echo '<div class="modal-dialog modal-dialog-centered" role="document">';
-      echo '<div class="modal-content">';
-      echo '<div class="modal-header">';
-      echo '<h5 class="modal-title" id="exampleModalLongTitle">Update Transport Details</h5>';
-      echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-      echo '<span aria-hidden="true">&times;</span>';
-      echo '</button>';
-      echo '</div>';
-      echo '<div class="modal-body">';
-      echo '<form method="POST" action="updateTransport.php">';
-      echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
-
-      echo '<div class="form-group">';
-      echo '<label for="imageUrl">Image URL:</label>';
-      echo '<input type="file" name="imageUrl" required value="' . $row['image'] . '">';
-      echo '</div>';
-
-      echo '<div class="form-group">';
-      echo '<label for="name">Name:</label>';
-      echo '<input type="text" name="name" value="' . $row['name'] . '"><br>';
-      echo '</div>';
-
-      echo '<div class="form-group">';
-  echo '<label for="name">Captions:</label>';
-  echo '<textarea name="caption" rows="30" style="display: block; width: 100%;">' . $row['caption'] . '</textarea><br>';
-  echo '</div>';
-
-
-
-      echo '<div class="modal-footer" align="center">';
-      echo '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
-      echo '<input type="submit" class="btn btn-primary" value="Save Changes">';
-      echo '</div>';
-
-      echo '</form>';
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
   }
 } else {
   echo '<div class="col-md-12 d-flex ftco-animate">';
@@ -214,8 +195,10 @@ if ($result->num_rows > 0) {
   echo '</div>';
   echo '</div>';
 }
-
 ?>
+
+      </div>
+    </div>
   </section>
 
 
@@ -289,11 +272,11 @@ if ($result->num_rows > 0) {
 </html>
 
   <!-- Modal -->
-  <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addPostModalLabel">Add Transport</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Transport</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -306,7 +289,7 @@ if ($result->num_rows > 0) {
     </div>
     <div class="form-group">
       <label for="caption">Caption</label>
-      <textarea class="form-control" id="caption" name="caption" rows="50" required></textarea>
+      <textarea class="form-control" id="caption" name="caption" rows="20" required></textarea>
     </div>
     <div class="form-group">
       <label for="image">Image:</label>
@@ -319,3 +302,68 @@ if ($result->num_rows > 0) {
     </div>
   </div>
 
+  <?php
+// Connect to your database
+$sname = "localhost";
+$uname = "root";
+$password = "";
+$db_name = "visitjaybeee";
+
+$conn = mysqli_connect($sname, $uname, $password, $db_name);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch places data from the database
+$sql = "SELECT * FROM transportation";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()){
+        $transportationId = $row['id'];
+        $image = $row['image'];
+        $name = $row['name'];
+        $caption = $row['caption'];
+        $message = "Transportation updated successfully";
+
+        echo '<div class="modal fade" id="exampleModalCenter' . $transportationId . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle' . $transportationId . '">Update Transport</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="update_post.php">
+                            <input type="hidden" name="id" value="' . $transportationId . '">
+                           
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" required value="' . $name . '">
+                            </div>
+                            <div class="form-group">
+                                <label for="caption">Caption:</label>
+                                <textarea class="form-control" id="caption" name="caption" rows="20" required>' . $caption . '</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image URL:</label>
+                                <input type="file" name="image" required value="' . $image . '">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>';
+    }
+} 
+$conn->close();
+?>
+
+
+</div>
+      </div>
+    </div>
+  </div>
