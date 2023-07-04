@@ -1,7 +1,17 @@
+<?php
+function getLimitedCaption($caption, $limit = 10) {
+  $words = explode(" ", $caption);
+  if (count($words) > $limit) {
+    $caption = implode(" ", array_slice($words, 0, $limit)) . "...";
+  }
+  return $caption;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Transportation - Visit Jaybee</title>
+    <title>Places Details In Johor Bahru</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -21,11 +31,13 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.min.css">
 
-	<link rel="icon" href="images/logo.png" type="image/ico">
+    <link rel="icon" href="images/logo.png" type="image/ico">
   </head>
   <body>
 
+		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	    	<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" scrset=""></span>&nbsp;&nbsp;Visit Jaybee</a>
@@ -45,8 +57,33 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-start">
+        <div class="col-md-9 ftco-animate pb-5">
+          <h1 class="mb-3 bread">Transport and Routes</h1>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <?php
+  <section class="ftco-section bg-light">
+    <div class="container">
+    <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+      <div class="row d-flex">
+      <?php
   // Connect to your database
   $sname= "localhost";
   $unmae= "root";
@@ -69,20 +106,36 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
           $name = $row['name'];
           $caption = $row['caption'];
 
-          echo '
-          <div class="place">
-              <img class="place-image" src="transportationimages/'.$imageUrl.'" alt="' . $name . '"> </a>
-              <div style="font-size: 150%;">' . $name . '</div>
-              <div>' . $caption . '</div>
-          </div>';
-
-
+          echo '<div class="col-md-4 d-flex ftco-animate">';
+          echo '<div class="blog-entry justify-content-end">';
+          echo '<img class="block-20" src="transportationimages/' . $row['image'] . '" alt="Transportation">';
+          echo '<div class="text p-4 float-right d-block">';
+          echo '<div class="topper d-flex align-items-center">';
+          echo '<div class="one py-2 pl-3 pr-1 align-self-stretch">';
+          echo '</div>';
+          echo '<div class="two pl-0 pr-3 py-2 align-self-stretch">';
+          echo '</div>';
+          echo '</div>';
+          echo '<h3 class="heading mb-3">' . $row['name'] . '</h3>';
+          echo '<h4 class="heading mb-3">' . getLimitedCaption($row['caption'], 10) . '</h4>';
+          echo '<p><a href="transportdetails.php?id=' . $row['id'] . '">Read more</a></p>';
+          echo '</div>';
+          echo '</div>';
+          echo '</div>';
+        }
+      } else {
+        echo '<div class="col-md-12 d-flex ftco-animate">';
+        echo '<div class="blog-entry justify-content-end">';
+        echo '<div class="text p-4 float-right d-block">';
+        echo '<h3 class="heading mb-3">No posts found.</h3>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
       }
-  }
-
-  $conn->close();
-?>
-
+      ?>
+      
+            </div>
+</section>
 
     <footer class="footer">
 			<div class="container">
@@ -99,12 +152,12 @@ $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
-							<li><a href="index.html" class="py-2 d-block">Home</a></li>
-							<li><a href="about.html" class="py-2 d-block">About</a></li>
-							<li><a href="gallery.php" class="py-2 d-block">Places</a></li>
-							<li><a href="translation.php" class="py-2 d-block">Translation</a></li>
-							<li><a href="transportation.php" class="py-2 d-block">Transportation</a></li>
-							<li><a href="trip.php" class="py-2 d-block">Trip</a></li>
+              <li><a href="index.html" class="py-2 d-block">Home</a></li>
+              <li><a href="about.html" class="py-2 d-block">About</a></li>
+              <li><a href="gallery.php" class="py-2 d-block">Places</a></li>
+              <li><a href="translation.php" class="py-2 d-block">Translation</a></li>
+              <li><a href="transportation.php" class="py-2 d-block">Transportation</a></li>
+			        <li><a href="trip.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
