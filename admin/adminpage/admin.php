@@ -1,5 +1,5 @@
 <?php
-include_once 'C:/xampp/htdocs/visitjaybeee/include/db_connect.php';
+include_once '../../include/db_connect.php';
 
 // Retrieve data from the "users" table
 $userQuery = "SELECT * FROM users";

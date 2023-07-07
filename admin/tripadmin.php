@@ -167,7 +167,7 @@ $userType = getUserType();
               </div>
               <div class="modal-body">
               
-              <form method="POST" action="datatrip.php">
+              <form method="POST" action="datatrip.php" enctype="multipart/form-data">
               
               <div class="form-group">
               <label for="image">Image:</label>
@@ -275,7 +275,7 @@ $userType = getUserType();
                 </button>
               </div>
               <div class="modal-body">
-              <form method="POST" action="updateTrip.php">
+              <form method="POST" action="updateTrip.php" enctype="multipart/form-data">
               <input type="hidden" name="id" value="' . $tripId . '">
 
               <div class="form-group">

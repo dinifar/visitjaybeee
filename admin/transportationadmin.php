@@ -282,7 +282,7 @@ if ($result->num_rows > 0) {
           </button>
         </div>
         <div class="modal-body">
-  <form method="post" action="save_post.php">
+  <form method="post" action="save_post.php" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" name="name" required>
@@ -336,7 +336,7 @@ if ($result->num_rows > 0) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="update_post.php">
+                        <form method="post" action="update_post.php" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="' . $transportationId . '">
                            
                             <div class="form-group">
