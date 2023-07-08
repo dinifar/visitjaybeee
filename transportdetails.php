@@ -95,7 +95,7 @@ $row = $result->fetch_assoc();
     <a href="transportation.php">Go Back</a>
     <h1><?php echo $row['name']; ?></h1>
     <img src="transportationimages/<?php echo $row['image']; ?>" alt="Transportation" class="transportation-image">
-    <br><br><p><?php echo $row['caption']; ?></p>
+    <br><br><p><?php echo nl2br($row['caption']); ?></p>
     
   </div>
 
