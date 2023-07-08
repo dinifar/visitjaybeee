@@ -222,8 +222,11 @@ if (isset($_GET['delCategory'])) {
             .then(data => {
               console.log(data); // Log the response
               if (data.success) {
-                // Deletion successful, redirect to desired page
-                window.location = "admin.php?admin=success";
+                // Deletion successful, show success message
+                Swal.fire("Success", "Data deleted successfully", "success").then(() => {
+                  // Redirect to desired page
+                  window.location = "admin.php?admin=success";
+                });
               } else {
                 // Deletion failed, show an error message
                 Swal.fire("Error", "Deletion failed", "error");
@@ -240,44 +243,47 @@ if (isset($_GET['delCategory'])) {
   }
 
   function confirmDeleteCategory(delCategory) {
-    if (delCategory !== "") {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You will not be able to recover this data!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
-        if (willDelete.isConfirmed) {
-          // Send an AJAX request to function.php
-          fetch("function.php", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              body: "delCategory=" + delCategory
-            })
-            .then(response => response.json())
-            .then(data => {
-              console.log(data); // Log the response
-              if (data.success) {
-                // Deletion successful, redirect to desired page
+  if (delCategory !== "") {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete.isConfirmed) {
+        // Send an AJAX request to function.php
+        fetch("function.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: "delCategory=" + delCategory
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data); // Log the response
+            if (data.success) {
+              // Deletion successful, show a success message
+              Swal.fire("Success", "Data deleted successfully", "success").then(() => {
+                // Redirect to desired page
                 window.location = "admin.php?category=success";
-              } else {
-                // Deletion failed, show an error message
-                Swal.fire("Error", "Deletion failed", "error");
-              }
-            })
-            .catch(error => {
-              console.log(error); // Log the error
-              // Error occurred, show an error message
-              Swal.fire("Error", "An error occurred", "error");
-            });
-        }
-      });
-    }
-   
+              });
+            } else {
+              // Deletion failed, show an error message
+              Swal.fire("Error", "Deletion failed", "error");
+            }
+          })
+          .catch(error => {
+            console.log(error); // Log the error
+            // Error occurred, show an error message
+            Swal.fire("Error", "An error occurred", "error");
+          });
+      }
+    });
   }
+}
+
 
 
 </script>

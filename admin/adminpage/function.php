@@ -1,8 +1,9 @@
 <?php
 
+session_start();
+
 include_once 'C:\xampp\htdocs\mastervisitjaybee\visitjaybeee\include/db_connect.php';
 
-session_start();
 
 if (isset($_POST['addcategory'])) {
     addcategory();
@@ -53,26 +54,34 @@ function addcategory()
         }
     }
 }
+
 function addadmin()
 {
     if (!$GLOBALS['con']) {
-        echo mysqli_error($GLOBALS['con']);
-    } else {
-        $name = mysqli_real_escape_string($GLOBALS['con'], $_POST['name']);
-        $user_name = mysqli_real_escape_string($GLOBALS['con'], $_POST['user_name']);
-        $password = mysqli_real_escape_string($GLOBALS['con'], $_POST['password']);
-        $phoneNum = mysqli_real_escape_string($GLOBALS['con'], $_POST['phoneNum']);
-        
-        $sql = "INSERT INTO users (name, user_name, password, phoneNum) VALUES ('$name', '$user_name', '$password', '$phoneNum')";
+        echo json_encode(array("success" => false, "error" => mysqli_error($GLOBALS['con'])));
+        exit();
     }
 
-    if (!mysqli_query($GLOBALS['con'], $sql)) {
-        header("Location: add-admin.php?add-admin=failed");
+    $name = mysqli_real_escape_string($GLOBALS['con'], $_POST['name']);
+    $user_name = mysqli_real_escape_string($GLOBALS['con'], $_POST['user_name']);
+    $password = mysqli_real_escape_string($GLOBALS['con'], $_POST['password']);
+    $phoneNum = mysqli_real_escape_string($GLOBALS['con'], $_POST['phoneNum']);
+    
+    $sql = "INSERT INTO users (name, user_name, password, phoneNum) VALUES ('$name', '$user_name', '$password', '$phoneNum')";
+    
+    if (mysqli_query($GLOBALS['con'], $sql)) {
+        echo json_encode(array("success" => true));
         exit();
     } else {
-        return 0;
+        $response = array("success" => false, "error" => mysqli_error($GLOBALS['con']));
+        echo json_encode($response);
+        exit();
+        
+      
     }
 }
+
+
 
 function delAdmin()
 {

@@ -29,6 +29,9 @@ if (isset($_GET['addadmin'])) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/tooplate.css">
+     <link rel="stylesheet" type="text/css" href="sweetalert.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg03">
@@ -116,21 +119,61 @@ if (isset($_GET['addadmin'])) {
                 </div>
             </div>
            
-            
-        <!-- <footer class="row tm-mt-small">
-            <div class="col-12 font-weight-light">
-                <p class="d-inline-block tm-bg-black text-white py-2 px-4">
-                    Copyright &copy; 2018. Created by
-                    <a href="http://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a> |  Distributed by <a href="https://themewagon.com" class="text-white tm-footer-link">ThemeWagon</a>
-                </p>
-            </div>
-        </footer> -->
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showSuccessMessage(message) {
+            Swal.fire({
+                title: "Success",
+                text: message,
+                icon: "success",
+            }).then(() => {
+                // Redirect to desired page
+                window.location = "admin.php?admin=success";
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector(".tm-add-form");
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(form);
+
+                // Send an AJAX request
+                fetch("function.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data); // Log the response
+                        if (data.success) {
+                            // Admin added successfully, show success message
+                            showSuccessMessage("Admin added successfully");
+                        } else {
+                            // Admin addition failed, show an error message
+                            Swal.fire("Error", "Admin addition failed", "error");
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error); // Log the error
+                        // Error occurred, show an error message
+                        Swal.fire("Error", "An error occurred", "error");
+                    });
+            });
+        });
+    </script>
+
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
+
+    
 </body>
 
 </html>
