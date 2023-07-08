@@ -51,7 +51,7 @@ if (isset($_GET['addadmin'])) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="Homepage/indexadmin.html">HOME</a>
+                                <a class="nav-link" href="../indexadmin.php">HOME</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="admin.php">ADMIN</a>
