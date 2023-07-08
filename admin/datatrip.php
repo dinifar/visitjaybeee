@@ -45,15 +45,9 @@ if (isset($_POST['submit'])) {
     // Add your specific checks for the planning file, if required
 }
 
-// Check if files already exist
-if (file_exists($imageTargetFilePath) || file_exists($planningTargetFilePath)) {
-    echo "Sorry, the file already exists.";
-    $imageUploadOk = 0;
-    $planningUploadOk = 0;
-}
 
 // Check file sizes (modify as needed)
-$maxFileSize = 500000; // 500KB
+$maxFileSize = 5000000; // 5MB
 if ($_FILES['image']['size'] > $maxFileSize) {
     echo "Sorry, the image file is too large.";
     $imageUploadOk = 0;
