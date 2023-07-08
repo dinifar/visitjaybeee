@@ -12,6 +12,17 @@ if (isset($_SESSION['users'])) {
 
 // Check if login error occurred
 if (isset($_SESSION['login_error']) && $_SESSION['login_error'] === true) {
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Invalid username or password.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        });
+        </script>";
     unset($_SESSION['login_error']);
 }
 ?>
