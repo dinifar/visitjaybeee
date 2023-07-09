@@ -87,11 +87,6 @@ $userType = getUserType();
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="indexadmin.php" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
-	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
-	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
-	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
 	        </ul>
 
           <?php
@@ -99,13 +94,31 @@ $userType = getUserType();
 // and assigned the user type to the $type variable
 
 if (!empty($uid)) {
-    ?>
-    <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
-    <?php
+    
     if ($userType === "1") {
         ?>
+		<ul class="navbar-nav ml-auto">
+		<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
+		<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
+	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
+	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
+	</ul>
         <a href="adminpage/admin.php" class="btn btn-primary mr-md-4 py-3 px-4">Admin<span class="ion-ios-arrow-forward"></span></a>
+		<a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
         <?php
+    }
+	elseif ($userType === "2") {
+        ?>
+		<ul class="navbar-nav ml-auto">
+		<li class="nav-item"><a href="aboutadmin.php" class="nav-link">About</a></li>
+		<li class="nav-item"><a href="galleryadmin.php" class="nav-link">Places</a></li>
+	        	<li class="nav-item"><a href="translationadmin.php" class="nav-link">Translation Services</a></li>
+	          <li class="nav-item"><a href="transportationadmin.php" class="nav-link">Transport and Routes</a></li>
+	          <li class="nav-item"><a href="tripadmin.php" class="nav-link">Trip Planning</a></li>
+	</ul>
+    <a href="logout.php" class="btn btn-primary mr-md-4 py-3 px-4">Logout<span class="ion-ios-arrow-forward"></span></a>
+    <?php
     }
 } else {
     ?>
@@ -113,8 +126,6 @@ if (!empty($uid)) {
     <?php
 }
 ?>
-
-
 	      </div>
 	    </div>
 	  </nav>
@@ -548,11 +559,6 @@ if (!empty($uid)) {
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
               <li><a href="indexadmin.php" class="py-2 d-block">Home</a></li>
-              <li><a href="aboutadmin.php" class="py-2 d-block">About</a></li>
-              <li><a href="galleryadmin.php" class="py-2 d-block">Places</a></li>
-              <li><a href="translation.php" class="py-2 d-block">Translation</a></li>
-              <li><a href="transportation.php" class="py-2 d-block">Transportation</a></li>
-			  <li><a href="tripadmin.php" class="py-2 d-block">Trip</a></li>
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">

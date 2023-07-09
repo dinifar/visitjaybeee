@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2023 at 07:46 PM
+-- Generation Time: Jul 09, 2023 at 02:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -241,12 +241,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `password`, `name`, `phoneNum`, `type`) VALUES
-(1, 'qarin', 'qarin234', 'Nur Qarin Lisa', 1345423565, 1),
-(4, 'lalisa@gmail.com', 'lisa01', 'Lalisa Manoban', 1234567891, 0),
-(5, 'kimgyu@gmail.com', 'migyu12', 'Kim Mingyu', 1723459603, 0),
-(6, 'chennie@gmail.com', 'chenchen', 'Chen', 1110107127, 0),
-(7, 'jiminpark@gmail.com', 'jimin07', 'Park Jimin', 1110109127, 0),
-(8, 'yeonsang@gmail.com', 'kyeongsa', 'Kang Yeonsang', 1110109876, 0);
+(1, 'helmi', 'helmi123', 'Helmi', 1345423565, 1),
+(4, 'dini', 'dini01', 'Dini Farizah', 1234567891, 2);
 
 --
 -- Indexes for dumped tables

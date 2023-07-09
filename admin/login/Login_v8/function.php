@@ -32,7 +32,7 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION['id'] = $row['id'];
 
     // Check the user type
-    if ($row['type'] == 0) {
+    if ($row['type'] == 2) {
         ob_start();
         // User is an admin, redirect to indexadmin.php
         header("Location: ..\..\..\admin\indexadmin.php");
@@ -45,7 +45,7 @@ if (mysqli_num_rows($result) == 1) {
         ob_end_flush();
         exit();
     }
-} else {
+}else {
     // Login failed, display error message
     $_SESSION['login_error'] = true;
     ob_start();
